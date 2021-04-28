@@ -2,14 +2,14 @@ from attractors import attractors
 from pyeda.inter import *
 
 
-def psolQ(g):
-    for min_prio in range(g.p, -1, -1):
+def lay_solver(g):
+    for min_prio in range(g.d, -1, -1):
         i = min_prio % 2
         w = lay_ep(g, min_prio)
         if not w.is_zero():
             x = attractors.attractor(g, i, w)
             ind_game = g.induced_game(~x)
-            (z_0, z_1) = psolQ(ind_game)
+            (z_0, z_1) = lay_solver(ind_game)
             if i == 0:
                 return z_0 | x, z_1
             else:
@@ -35,15 +35,15 @@ def lay_ep(g, min_prio):
 
 def lay_attr(g, i, min_prio, u):
     if i == 0:
-        if g.p % 2 == 0:
-            init_prio = g.p + 2
+        if g.d % 2 == 0:
+            init_prio = g.d + 2
         else:
-            init_prio = g.p + 1
+            init_prio = g.d + 1
     else:
-        if g.p % 2 == 0:
-            init_prio = g.p + 1
+        if g.d % 2 == 0:
+            init_prio = g.d + 1
         else:
-            init_prio = g.p + 2
+            init_prio = g.d + 2
 
     b = expr2bdd(expr(False))
     for curr_prio in range(init_prio, min_prio - 1, - 2):

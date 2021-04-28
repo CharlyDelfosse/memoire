@@ -4,12 +4,16 @@ import math
 from attractors import attractors
 
 
-def psolC_gen(g):
+def good_ep_solver_gen(g):
+    init_ext_game_infos(g)
+    return good_ep_solver_gen_r(g)
+
+def init_ext_game_infos(g):
     m_vars = []
     m_vars_bis = []
     m_mapping = {}
     for prio_f_index in range(g.k):
-        m_vars_n = math.ceil(math.log(g.p[prio_f_index] + 1, 2))
+        m_vars_n = math.ceil(math.log(g.d[prio_f_index] + 1, 2))
 
         curr_m_vars = bddvars('m' + str(prio_f_index), (0, m_vars_n))
         curr_m_vars_bis = bddvars('m_bis' + str(prio_f_index), (0, m_vars_n))
@@ -26,10 +30,8 @@ def psolC_gen(g):
     g.m_vars = m_vars
     g.m_vars_bis = m_vars_bis
     g.mapping_bis = tot_mapping
-    return good_ep_solver(g)
 
-
-def good_ep_solver(g):
+def good_ep_solver_gen_r(g):
     for prio_f_index in range(g.k):
         c_tau_e = compute_tau_ext(g, prio_f_index)
         w = good_ep(g, 1, c_tau_e, prio_f_index)
@@ -39,7 +41,7 @@ def good_ep_solver(g):
             ind_game.m_vars = g.m_vars
             ind_game.m_vars_bis = g.m_vars_bis
             ind_game.mapping_bis = g.mapping_bis
-            (z0, z1) = good_ep_solver(ind_game)
+            (z0, z1) = good_ep_solver_gen_r(ind_game)
             return z0, z1 | x
     tau_e = compute_full_tau_ext(g)
     w = good_ep_full(g, 0, tau_e)
@@ -49,7 +51,7 @@ def good_ep_solver(g):
         ind_game.m_vars = g.m_vars
         ind_game.m_vars_bis = g.m_vars_bis
         ind_game.mapping_bis = g.mapping_bis
-        (z0, z1) = good_ep_solver(ind_game)
+        (z0, z1) = good_ep_solver_gen_r(ind_game)
         return z0 | x, z1
 
     return expr2bdd(expr(False)), expr2bdd(expr(False))
@@ -58,10 +60,10 @@ def good_ep_solver(g):
 def compute_tau_ext(g, c_prio):
     res_expr = expr2bdd(expr(False))
 
-    for curr_p in range(g.p[c_prio] + 1):
+    for curr_p in range(g.d[c_prio] + 1):
         current_p_point = num2point(curr_p, g.m_vars_bis[c_prio])
         current_p_bdd = mapping2expr(g.m_vars_bis[c_prio], current_p_point)
-        for curr_m_p in range(g.p[c_prio] + 1):
+        for curr_m_p in range(g.d[c_prio] + 1):
             current_m_p_point = num2point(curr_m_p, g.m_vars[c_prio])
             current_m_p_bdd = mapping2expr(g.m_vars[c_prio], current_m_p_point)
             curr_expr = g.gamma[c_prio][curr_p] & current_m_p_bdd
@@ -80,10 +82,10 @@ def compute_full_tau_ext(g):
     res_expr = expr2bdd(expr(True))
     for prio_f_index in range(g.k):
         prio_res_expr = expr2bdd(expr(False))
-        for curr_p in range(g.p[prio_f_index] + 1):
+        for curr_p in range(g.d[prio_f_index] + 1):
             current_p_point = num2point(curr_p, g.m_vars_bis[prio_f_index])
             current_p_bdd = mapping2expr(g.m_vars_bis[prio_f_index], current_p_point)
-            for curr_m_p in range(g.p[prio_f_index] + 1):
+            for curr_m_p in range(g.d[prio_f_index] + 1):
                 current_m_p_point = num2point(curr_m_p, g.m_vars[prio_f_index])
                 current_m_p_bdd = mapping2expr(g.m_vars[prio_f_index], current_m_p_point)
                 curr_expr = g.gamma[prio_f_index][curr_p] & current_m_p_bdd
@@ -110,7 +112,7 @@ def good_ep(g, i, tau_e, c_prio):
 
         f = f_old & attr_t
         id_prio_m = expr2bdd(expr(False))
-        for curr_p in range(g.p[c_prio] + 1):
+        for curr_p in range(g.d[c_prio] + 1):
             curr_p_point = num2point(curr_p, g.m_vars[c_prio])
             curr_p_bdd = mapping2expr(g.m_vars[c_prio], curr_p_point)
             id_prio_m = id_prio_m | (g.gamma[c_prio][curr_p] & curr_p_bdd)
@@ -142,7 +144,7 @@ def good_ep_full(g, i, tau_e):
         id_prio_m = expr2bdd(expr(False))
         for prio_f_index in range(g.k):
             curr_prio_m = expr2bdd(expr(False))
-            for curr_p in range(g.p[prio_f_index] + 1):
+            for curr_p in range(g.d[prio_f_index] + 1):
                 curr_p_point = num2point(curr_p, g.m_vars[prio_f_index])
                 curr_p_bdd = mapping2expr(g.m_vars[prio_f_index], curr_p_point)
                 curr_prio_m = curr_prio_m | (g.gamma[prio_f_index][curr_p] & curr_p_bdd)

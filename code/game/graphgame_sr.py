@@ -16,7 +16,7 @@ def mapping2expr(p_vars, point):
 
 class GraphGame:
 
-    def __init__(self, n, p):
+    def __init__(self, n, d):
         self.n_q_vars = math.ceil(math.log(n, 2))
         self.n_col_vars = math.ceil(math.log(p+1,2))
         self.n_vars = self.n_q_vars + self.n_col_vars
@@ -29,7 +29,7 @@ class GraphGame:
 
         self.g_vars = self.q_vars + self.col_vars + self.bis_q_vars + self.bis_col_vars
         self.bis_vars = self.bis_q_vars + self.bis_col_vars
-        self.p = p
+        self.d = d
         self.n = n
 
         self.mapping_bis = {}
@@ -50,7 +50,7 @@ class GraphGame:
         self.tau = tau
 
     def get_max_prio(self):
-        curr_max = self.p
+        curr_max = self.d
         q_expr = (self.phi_0 | self.phi_1)
         curr_max_bdd = q_expr & mapping2expr(self.col_vars,num2point(curr_max,self.col_vars))
         while curr_max_bdd.is_zero():
@@ -63,7 +63,7 @@ class GraphGame:
         phi_0_bar = self.phi_0 & x
         phi_1_bar = self.phi_1 & x
 
-        new_game = GraphGame(self.n, self.p)
+        new_game = GraphGame(self.n, self.d)
         new_game.set_expr(phi_0_bar, phi_1_bar, tau_bar)
 
         return new_game

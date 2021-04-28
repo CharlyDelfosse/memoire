@@ -54,7 +54,7 @@ def get_all_nodes(gg, m_vars):
     all_nodes = []
     for i in range(0, gg.n):
         current_node_point = num2point(i, gg.q_vars)
-        for j in range(0, gg.p + 1):
+        for j in range(0, gg.d + 1):
             current_m_point = num2point(j, m_vars)
             curr_dict = dict(current_node_point)
             curr_dict.update(current_m_point)
@@ -64,7 +64,7 @@ def get_all_nodes(gg, m_vars):
 
 
 def get_prio(gg, node):
-    for i in range(0, gg.p + 1):
+    for i in range(0, gg.d + 1):
         if gg.gamma[i].restrict(node).is_one():
             return i
     return -1

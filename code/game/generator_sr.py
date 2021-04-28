@@ -16,7 +16,7 @@ def random_phi_and_p(game_infos):
         current_node_point = num2point(i, game_infos.q_vars)
         current_node_bdd = mapping2expr(game_infos.q_vars, current_node_point)
 
-        rand_priority = random.randint(0, game_infos.p)
+        rand_priority = random.randint(0, game_infos.d)
         rand_priority_point = num2point(rand_priority, game_infos.col_vars)
         rand_priority_bdd = mapping2expr(game_infos.col_vars, rand_priority_point)
 

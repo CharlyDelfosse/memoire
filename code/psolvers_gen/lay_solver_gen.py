@@ -5,30 +5,43 @@ from pyeda.inter import *
 from itertools import product
 
 
-def psolQ_gen(g):
-    min_even_prio = [[] for _ in range(g.k)]
+def lay_solver_gen(g):
 
     for prio_f_index in range(g.k):
-        if g.p[prio_f_index] % 2 == 1:
-            init_prio = g.p[prio_f_index]
+        if g.d[prio_f_index] % 2 == 1:
+            init_prio = g.d[prio_f_index]
         else:
-            init_prio = g.p[prio_f_index] - 1
+            init_prio = g.d[prio_f_index] - 1
         for min_prio in range(init_prio, -1, -2):
-            w = lay_ep(g, min_prio, prio_f_index)
+            w = lay_ep_1(g, min_prio, prio_f_index)
             if not w.is_zero():
                 x = attractors.attractor(g, 1, w)
                 ind_game = g.induced_game(~x)
-                (z0, z1) = psolQ_gen(ind_game)
+                (z0, z1) = lay_solver_gen(ind_game)
                 return z0, z1 | x
 
+    min_even_prio = [[] for _ in range(g.k)]
     for prio_f_index in range(g.k):
-        if g.p[prio_f_index] % 2 == 0:
-            init_prio = g.p[prio_f_index]
+        if g.d[prio_f_index] % 2 == 0:
+            init_prio = g.d[prio_f_index]
         else:
-            init_prio = g.p[prio_f_index] - 1
+            init_prio = g.d[prio_f_index] - 1
         for curr_prio in range(init_prio, -1, -2):
             min_even_prio[prio_f_index].append(curr_prio)
     all_combinations = product(*min_even_prio)
+    init_ext_game_infos(g)
+
+    for comb in all_combinations:
+        w = lay_ep_full(g, comb)
+        if not w.is_zero():
+            x = attractors.attractor(g, 0, w)
+            ind_game = g.induced_game(~x)
+            (z0, z1) = lay_solver_gen(ind_game)
+            return z0 | x, z1
+
+    return expr2bdd(expr(False)), expr2bdd(expr(False))
+
+def init_ext_game_infos(g):
     em_vars_n = g.k
     g.em_vars = bddvars('n', (0, em_vars_n))
     g.em_vars_bis = bddvars('n_bis', (0, em_vars_n))
@@ -37,19 +50,10 @@ def psolQ_gen(g):
         em_mapping[g.em_vars[prio_f_index]] = g.em_vars_bis[prio_f_index]
     tot_mapping = g.mapping_bis
     tot_mapping.update(em_mapping)
-
-    for comb in all_combinations:
-        w = lay_ep_full(g, comb)
-        if not w.is_zero():
-            x = attractors.attractor(g, 0, w)
-            ind_game = g.induced_game(~x)
-            (z0, z1) = psolQ_gen(ind_game)
-            return z0 | x, z1
-
-    return expr2bdd(expr(False)), expr2bdd(expr(False))
+    g.mapping_bis = tot_mapping;
 
 
-def lay_ep(g, min_prio, c_prio_f):
+def lay_ep_1(g, min_prio, c_prio_f):
     f_old = g.sup_prio_expr_odd(min_prio, c_prio_f)
     while True:
         lay_attr_f = lay_attr(g, min_prio, f_old, c_prio_f)
@@ -63,10 +67,10 @@ def lay_ep(g, min_prio, c_prio_f):
 def lay_ep_full(g, q):
     max_prios = []
     for c_prio in range(g.k):
-        if g.p[c_prio] % 2 == 1:
-            max_prios.append(g.p[c_prio] - 1)
+        if g.d[c_prio] % 2 == 1:
+            max_prios.append(g.d[c_prio] - 1)
         else:
-            max_prios.append(g.p[c_prio])
+            max_prios.append(g.d[c_prio])
     u = g.sup_all_prio_even(q)
     return lay_attr_full(g, q, u, max_prios)
 
@@ -87,10 +91,10 @@ def compute_tau_ext(g, min_prios):
 
 
 def lay_attr(g, min_prio, u, c_prio):
-    if g.p[c_prio] % 2 == 0:
-        init_prio = g.p[c_prio] + 1
+    if g.d[c_prio] % 2 == 0:
+        init_prio = g.d[c_prio] + 1
     else:
-        init_prio = g.p[c_prio] + 2
+        init_prio = g.d[c_prio] + 2
 
     b = expr2bdd(expr(False))
     for curr_prio in range(init_prio, min_prio - 1, - 2):

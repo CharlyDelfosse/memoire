@@ -5,12 +5,12 @@ from pyeda.inter import *
 
 class GraphGame:
 
-    def __init__(self, n, p):
+    def __init__(self, n, d):
         self.n_vars = math.ceil(math.log(n, 2))
         self.q_vars = bddvars('x', (0, self.n_vars))
         self.bis_vars = bddvars('x_bis', (0, self.n_vars))
         self.g_vars = self.q_vars + self.bis_vars
-        self.p = p
+        self.d = d
         self.n = n
 
         self.mapping_bis = {}
@@ -33,7 +33,7 @@ class GraphGame:
         self.gamma = gamma
 
     def get_max_prio(self):
-        curr_max = self.p
+        curr_max = self.d
         curr_max_bdd = self.gamma[curr_max]
         while curr_max_bdd.is_zero():
             curr_max = curr_max - 1
@@ -42,7 +42,7 @@ class GraphGame:
 
     def get_prio(self, node):
         curr_prio = 0
-        while curr_prio <= self.p:
+        while curr_prio <= self.d:
             if self.gamma[curr_prio] & node is self.gamma[curr_prio]:
                 return curr_prio
             curr_prio += 1
@@ -58,7 +58,7 @@ class GraphGame:
     # Return the expression which is evaluate to True for vertices with prio greater or equal than min_color
     def sup_prio_expr(self, min_prio):
         expr_res = expr2bdd(expr(False))
-        for curr_prio in range(min_prio, self.p + 1):
+        for curr_prio in range(min_prio, self.d + 1):
             expr_res = expr_res | self.gamma[curr_prio]
         return expr_res
 
@@ -68,7 +68,7 @@ class GraphGame:
             init_prio = min_prio + 1
         else:
             init_prio = min_prio
-        for curr_prio in range(init_prio, self.p + 1, 2):
+        for curr_prio in range(init_prio, self.d + 1, 2):
             expr_res = expr_res | self.gamma[curr_prio]
         return expr_res
 
@@ -78,7 +78,7 @@ class GraphGame:
             init_prio = min_prio
         else:
             init_prio = min_prio + 1
-        for curr_prio in range(init_prio, self.p + 1, 2):
+        for curr_prio in range(init_prio, self.d + 1, 2):
             expr_res = expr_res | self.gamma[curr_prio]
         return expr_res
 
@@ -88,10 +88,10 @@ class GraphGame:
         phi_1_bar = self.phi_1 & x
         gamma_bar = []
 
-        for curr_p in range(self.p + 1):
+        for curr_p in range(self.d + 1):
             gamma_bar.append(self.gamma[curr_p] & (phi_0_bar | phi_1_bar))
 
-        new_game = GraphGame(self.n, self.p)
+        new_game = GraphGame(self.n, self.d)
         new_game.set_expr(phi_0_bar, phi_1_bar, tau_bar, gamma_bar)
 
         return new_game

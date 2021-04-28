@@ -5,13 +5,13 @@ from attractors.fatal_attractors import monotone_attractor
 
 
 def psolB(g):
-    for curr_color in range(0, g.p + 1):
-        player = curr_color % 2
-        x = g.gamma[curr_color] & (g.phi_0 | g.phi_1)
-        cache = expr2bdd(expr(False))
-        while not (x.is_zero() or x is cache):
-            cache = x
-            m_attr_x = monotone_attractor(g, player, x, curr_color)
+    for curr_p in range(0, g.d + 1):
+        player = curr_p % 2
+        x = g.gamma[curr_p] & (g.phi_0 | g.phi_1)
+        f_old = expr2bdd(expr(False))
+        while not (x.is_zero() or x is f_old):
+            f_old = x
+            m_attr_x = monotone_attractor(g, player, x, curr_p)
             if (m_attr_x | x) is m_attr_x:
                 attr_ma = attractors.attractor(g, player, m_attr_x)
                 ind_game = g.induced_game(~attr_ma)

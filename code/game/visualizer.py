@@ -53,6 +53,6 @@ def get_all_nodes(gg):
 
 
 def get_prio(gg, node):
-    for i in range(0, gg.p + 1):
+    for i in range(0, gg.d + 1):
         if gg.gamma[i].restrict(node).is_one():
             return i

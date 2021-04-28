@@ -5,13 +5,13 @@ from pyeda.inter import *
 
 class GraphGame_gen:
 
-    def __init__(self, n, p):
-        self.k = len(p)
+    def __init__(self, n, d):
+        self.k = len(d)
         self.n_vars = math.ceil(math.log(n, 2))
         self.q_vars = bddvars('x', (0, self.n_vars))
         self.bis_vars = bddvars('x_bis', (0, self.n_vars))
         self.g_vars = self.q_vars + self.bis_vars
-        self.p = p
+        self.d = d
         self.n = n
 
         self.mapping_bis = {}
@@ -44,11 +44,11 @@ class GraphGame_gen:
 
         for curr_k in range(self.k):
             curr_new_gamma = []
-            for curr_p in range(self.p[curr_k] + 1):
+            for curr_p in range(self.d[curr_k] + 1):
                 curr_new_gamma.append(self.gamma[curr_k][curr_p] & (phi_0_bar | phi_1_bar))
             gamma_bar.append(curr_new_gamma)
 
-        new_game = GraphGame_gen(self.n, copy.copy(self.p))
+        new_game = GraphGame_gen(self.n, copy.copy(self.d))
         new_game.set_expr(phi_0_bar, phi_1_bar, tau_bar, gamma_bar)
 
         return new_game
@@ -61,7 +61,7 @@ class GraphGame_gen:
                 init_prio = min_prios[prio_f_index] + 1
             else:
                 init_prio = min_prios[prio_f_index]
-            for curr_prio in range(init_prio, self.p[prio_f_index] + 1, 2):
+            for curr_prio in range(init_prio, self.d[prio_f_index] + 1, 2):
                 expr_res = expr_res | self.gamma[prio_f_index][curr_prio]
         return expr_res
 
@@ -70,7 +70,7 @@ class GraphGame_gen:
         expr_res = expr2bdd(expr(True))
         for prio_f_index in range(self.k):
             curr_expr = expr2bdd(expr(False))
-            for curr_prio in range(min_prios[prio_f_index], self.p[prio_f_index] + 1):
+            for curr_prio in range(min_prios[prio_f_index], self.d[prio_f_index] + 1):
                 curr_expr = curr_expr | self.gamma[prio_f_index][curr_prio]
             expr_res = expr_res & curr_expr
         return expr_res
@@ -83,7 +83,7 @@ class GraphGame_gen:
                 init_prio = min_prios[prio_f_index]
             else:
                 init_prio = min_prios[prio_f_index] + 1
-            for curr_prio in range(init_prio, self.p[prio_f_index] + 1):
+            for curr_prio in range(init_prio, self.d[prio_f_index] + 1):
                 curr_expr = curr_expr | self.gamma[prio_f_index][curr_prio]
             expr_res = expr_res & curr_expr
         return expr_res
@@ -92,7 +92,7 @@ class GraphGame_gen:
     # Return the expression which is evaluate to True for vertices with prio greater or equal than min_prio in dimension prio_f_index
     def sup_prio_expr(self, min_prio, prio_f_index):
         expr_res = expr2bdd(expr(False))
-        for curr_prio in range(min_prio, self.p[prio_f_index] + 1, 1):
+        for curr_prio in range(min_prio, self.d[prio_f_index] + 1, 1):
             expr_res = expr_res | self.gamma[prio_f_index][curr_prio]
         return expr_res
 
@@ -103,7 +103,7 @@ class GraphGame_gen:
             init_prio = min_prio + 1
         else:
             init_prio = min_prio
-        for curr_prio in range(init_prio, self.p[prio_f_index] + 1, 2):
+        for curr_prio in range(init_prio, self.d[prio_f_index] + 1, 2):
             expr_res = expr_res | self.gamma[prio_f_index][curr_prio]
         return expr_res
 
@@ -113,6 +113,6 @@ class GraphGame_gen:
             init_prio = min_prio
         else:
             init_prio = min_prio + 1
-        for curr_prio in range(init_prio, self.p[prio_f_index] + 1, 2):
+        for curr_prio in range(init_prio, self.d[prio_f_index] + 1, 2):
             expr_res = expr_res | self.gamma[prio_f_index][curr_prio]
         return expr_res

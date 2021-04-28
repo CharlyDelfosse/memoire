@@ -3,8 +3,14 @@ from game.graphgame_sr import mapping2expr
 import math
 from attractors import attractors
 
-def psolC(g):
-    m_vars_n = math.ceil(math.log(g.p + 1, 2))
+
+def good_ep_solver(g):
+    init_ext_game_infos(g);
+    return good_ep_solver_r(g)
+
+
+def init_ext_game_infos(g):
+    m_vars_n = math.ceil(math.log(g.d + 1, 2))
     m_vars = bddvars('m', (0, m_vars_n))
     m_vars_bis = bddvars('m_bis', (0, m_vars_n))
 
@@ -18,10 +24,8 @@ def psolC(g):
     g.m_vars_bis = m_vars_bis
     g.mapping_bis = tot_mapping
 
-    return good_ep_solver(g)
 
-
-def good_ep_solver(g):
+def good_ep_solver_r(g):
     tau_e = compute_tau_ext(g)
     for i in [0, 1]:
         w = good_ep(g, i, tau_e)
@@ -42,10 +46,10 @@ def good_ep_solver(g):
 
 def compute_tau_ext(g):
     res_expr = expr2bdd(expr(False))
-    for curr_p in range(g.p + 1):
+    for curr_p in range(g.d + 1):
         current_p_point = num2point(curr_p, g.m_vars_bis)
         current_p_bdd = mapping2expr(g.m_vars_bis, current_p_point)
-        for curr_m_p in range(g.p + 1):
+        for curr_m_p in range(g.d + 1):
             current_m_p_point = num2point(curr_m_p, g.m_vars)
             current_m_p_bdd = mapping2expr(g.m_vars, current_m_p_point)
 
@@ -75,11 +79,14 @@ def good_ep(g, i, tau_e):
 
         attr_t = attractor_pos_ext(g, i, t, tau_e)
         f = f_old & attr_t
+
+        # For a vertice (v,m) check that m is the same priority than priority of v
         id_prio_m = expr2bdd(expr(False))
-        for curr_p in range(g.p + 1):
+        for curr_p in range(g.d + 1):
             curr_p_point = num2point(curr_p, g.m_vars)
             curr_p_bdd = mapping2expr(g.m_vars, curr_p_point)
             id_prio_m = id_prio_m | (g.gamma[curr_p] & curr_p_bdd)
+
         f = f & id_prio_m
         f = f.smoothing(g.m_vars)
         if f is f_old:

@@ -55,7 +55,7 @@ def get_all_nodes(gg):
 def get_prios(gg, node):
     prios = []
     for curr_p_f in range(0, gg.k):
-        for i in range(0, gg.p[curr_p_f] + 1):
+        for i in range(0, gg.d[curr_p_f] + 1):
             if gg.gamma[curr_p_f][i].restrict(node).is_one():
                 prios.append(i)
                 break

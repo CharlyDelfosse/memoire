@@ -8,7 +8,7 @@ from pyeda.inter import *
 def random_phi_and_p(game_infos):
     phi_0 = expr2bdd(expr(False))
     phi_1 = expr2bdd(expr(False))
-    gamma = [expr2bdd(expr(False)) for _ in range(game_infos.p + 1)]
+    gamma = [expr2bdd(expr(False)) for _ in range(game_infos.d + 1)]
 
     all_nodes = []
 
@@ -28,7 +28,7 @@ def random_phi_and_p(game_infos):
             phi_0 = phi_0 | current_node_bdd
         else:
             phi_1 = phi_1 | current_node_bdd
-        rand_priority = random.randint(0, game_infos.p)
+        rand_priority = random.randint(0, game_infos.d)
 
         gamma[rand_priority] = gamma[rand_priority] | current_node_bdd
 

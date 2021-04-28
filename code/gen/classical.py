@@ -6,9 +6,9 @@ from pyeda.inter import *
 
 def complement_game(g):
     for prio_f_index in range(g.k):
-        g.p[prio_f_index] += 1
-        curr_new_func = [expr2bdd(expr(False)) for _ in range(g.p[prio_f_index] + 2)]
-        for prio in range(1, g.p[prio_f_index] + 2):
+        g.d[prio_f_index] += 1
+        curr_new_func = [expr2bdd(expr(False)) for _ in range(g.d[prio_f_index] + 2)]
+        for prio in range(1, g.d[prio_f_index] + 2):
             curr_new_func[prio] = g.gamma[prio_f_index][prio - 1]
         g.gamma[prio_f_index] = curr_new_func
 
@@ -18,7 +18,7 @@ def classical_gen(g):
     max_values = [0] * g.k
 
     for prio_f_index in range(g.k):
-        curr_max = g.p[prio_f_index]
+        curr_max = g.d[prio_f_index]
         if curr_max % 2 == 0:
             max_values[prio_f_index] = curr_max + 1
         else:
@@ -65,7 +65,7 @@ def classical_with_psolver(g, psolver):
     complement_game(g_bar)
     max_values = [0] * g_bar.k
     for prio_f_index in range(g_bar.k):
-        curr_max = g_bar.p[prio_f_index]
+        curr_max = g_bar.d[prio_f_index]
         if curr_max % 2 == 0:
             max_values[prio_f_index] = curr_max + 1
         else:
