@@ -5,10 +5,13 @@ def attractor(g, i, f):
     k = 0
     attr_old = f
     while True:
+        print("a")
         f_1 = (g.tau & attr_old.compose(g.mapping_bis))
+        f_2 = g.tau & (~attr_old).compose(g.mapping_bis)
+        print("b")
         f_1 = f_1.smoothing(g.bis_vars)
 
-        f_2 = g.tau & (~attr_old).compose(g.mapping_bis)
+
         f_2 = ~(f_2.smoothing(g.bis_vars))
 
         if i == 0:

@@ -1,0 +1,1572 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> file
+Rule 1     file -> lines
+Rule 2     lines -> lines line
+Rule 3     lines -> line
+Rule 4     line -> version
+Rule 5     line -> mode
+Rule 6     line -> varinfo
+Rule 7     line -> diagram_name
+Rule 8     line -> nnodes
+Rule 9     line -> nvars
+Rule 10    line -> nsupportvars
+Rule 11    line -> supportvars
+Rule 12    line -> orderedvars
+Rule 13    line -> varids
+Rule 14    line -> permids
+Rule 15    line -> auxids
+Rule 16    line -> nroots
+Rule 17    line -> rootids
+Rule 18    line -> algdd
+Rule 19    line -> rootnames
+Rule 20    version -> VERSION name MINUS number DOT number
+Rule 21    mode -> FILEMODE NAME
+Rule 22    varinfo -> VARINFO number
+Rule 23    diagram_name -> DD name
+Rule 24    nnodes -> NNODES number
+Rule 25    nvars -> NVARS number
+Rule 26    nsupportvars -> NSUPPVARS number
+Rule 27    supportvars -> SUPPVARNAMES varnames
+Rule 28    orderedvars -> ORDEREDVARNAMES varnames
+Rule 29    varnames -> varnames varname
+Rule 30    varnames -> varname
+Rule 31    varname -> name
+Rule 32    varname -> number
+Rule 33    varids -> IDS integers
+Rule 34    permids -> PERMIDS integers
+Rule 35    auxids -> AUXIDS integers
+Rule 36    integers -> integers number
+Rule 37    integers -> number
+Rule 38    nroots -> NROOTS number
+Rule 39    rootids -> ROOTIDS integers
+Rule 40    rootnames -> ROOTNAMES varnames
+Rule 41    algdd -> ADD
+Rule 42    number -> NUMBER
+Rule 43    number -> MINUS NUMBER
+Rule 44    name -> NAME
+
+Terminals, with rules where they appear
+
+ADD                  : 41
+AUXIDS               : 35
+DD                   : 23
+DOT                  : 20
+FILEMODE             : 21
+IDS                  : 33
+MINUS                : 20 43
+NAME                 : 21 44
+NNODES               : 24
+NROOTS               : 38
+NSUPPVARS            : 26
+NUMBER               : 42 43
+NVARS                : 25
+ORDEREDVARNAMES      : 28
+PERMIDS              : 34
+ROOTIDS              : 39
+ROOTNAMES            : 40
+SUPPVARNAMES         : 27
+VARINFO              : 22
+VERSION              : 20
+error                : 
+
+Nonterminals, with rules where they appear
+
+algdd                : 18
+auxids               : 15
+diagram_name         : 7
+file                 : 0
+integers             : 33 34 35 36 39
+line                 : 2 3
+lines                : 1 2
+mode                 : 5
+name                 : 20 23 31
+nnodes               : 8
+nroots               : 16
+nsupportvars         : 10
+number               : 20 20 22 24 25 26 32 36 37 38
+nvars                : 9
+orderedvars          : 12
+permids              : 14
+rootids              : 17
+rootnames            : 19
+supportvars          : 11
+varids               : 13
+varinfo              : 6
+varname              : 29 30
+varnames             : 27 28 29 40
+version              : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . file
+    (1) file -> . lines
+    (2) lines -> . lines line
+    (3) lines -> . line
+    (4) line -> . version
+    (5) line -> . mode
+    (6) line -> . varinfo
+    (7) line -> . diagram_name
+    (8) line -> . nnodes
+    (9) line -> . nvars
+    (10) line -> . nsupportvars
+    (11) line -> . supportvars
+    (12) line -> . orderedvars
+    (13) line -> . varids
+    (14) line -> . permids
+    (15) line -> . auxids
+    (16) line -> . nroots
+    (17) line -> . rootids
+    (18) line -> . algdd
+    (19) line -> . rootnames
+    (20) version -> . VERSION name MINUS number DOT number
+    (21) mode -> . FILEMODE NAME
+    (22) varinfo -> . VARINFO number
+    (23) diagram_name -> . DD name
+    (24) nnodes -> . NNODES number
+    (25) nvars -> . NVARS number
+    (26) nsupportvars -> . NSUPPVARS number
+    (27) supportvars -> . SUPPVARNAMES varnames
+    (28) orderedvars -> . ORDEREDVARNAMES varnames
+    (33) varids -> . IDS integers
+    (34) permids -> . PERMIDS integers
+    (35) auxids -> . AUXIDS integers
+    (38) nroots -> . NROOTS number
+    (39) rootids -> . ROOTIDS integers
+    (41) algdd -> . ADD
+    (40) rootnames -> . ROOTNAMES varnames
+
+    VERSION         shift and go to state 20
+    FILEMODE        shift and go to state 21
+    VARINFO         shift and go to state 22
+    DD              shift and go to state 23
+    NNODES          shift and go to state 24
+    NVARS           shift and go to state 25
+    NSUPPVARS       shift and go to state 26
+    SUPPVARNAMES    shift and go to state 27
+    ORDEREDVARNAMES shift and go to state 28
+    IDS             shift and go to state 29
+    PERMIDS         shift and go to state 30
+    AUXIDS          shift and go to state 31
+    NROOTS          shift and go to state 32
+    ROOTIDS         shift and go to state 33
+    ADD             shift and go to state 34
+    ROOTNAMES       shift and go to state 35
+
+    file                           shift and go to state 1
+    lines                          shift and go to state 2
+    line                           shift and go to state 3
+    version                        shift and go to state 4
+    mode                           shift and go to state 5
+    varinfo                        shift and go to state 6
+    diagram_name                   shift and go to state 7
+    nnodes                         shift and go to state 8
+    nvars                          shift and go to state 9
+    nsupportvars                   shift and go to state 10
+    supportvars                    shift and go to state 11
+    orderedvars                    shift and go to state 12
+    varids                         shift and go to state 13
+    permids                        shift and go to state 14
+    auxids                         shift and go to state 15
+    nroots                         shift and go to state 16
+    rootids                        shift and go to state 17
+    algdd                          shift and go to state 18
+    rootnames                      shift and go to state 19
+
+state 1
+
+    (0) S' -> file .
+
+
+
+state 2
+
+    (1) file -> lines .
+    (2) lines -> lines . line
+    (4) line -> . version
+    (5) line -> . mode
+    (6) line -> . varinfo
+    (7) line -> . diagram_name
+    (8) line -> . nnodes
+    (9) line -> . nvars
+    (10) line -> . nsupportvars
+    (11) line -> . supportvars
+    (12) line -> . orderedvars
+    (13) line -> . varids
+    (14) line -> . permids
+    (15) line -> . auxids
+    (16) line -> . nroots
+    (17) line -> . rootids
+    (18) line -> . algdd
+    (19) line -> . rootnames
+    (20) version -> . VERSION name MINUS number DOT number
+    (21) mode -> . FILEMODE NAME
+    (22) varinfo -> . VARINFO number
+    (23) diagram_name -> . DD name
+    (24) nnodes -> . NNODES number
+    (25) nvars -> . NVARS number
+    (26) nsupportvars -> . NSUPPVARS number
+    (27) supportvars -> . SUPPVARNAMES varnames
+    (28) orderedvars -> . ORDEREDVARNAMES varnames
+    (33) varids -> . IDS integers
+    (34) permids -> . PERMIDS integers
+    (35) auxids -> . AUXIDS integers
+    (38) nroots -> . NROOTS number
+    (39) rootids -> . ROOTIDS integers
+    (41) algdd -> . ADD
+    (40) rootnames -> . ROOTNAMES varnames
+
+    $end            reduce using rule 1 (file -> lines .)
+    VERSION         shift and go to state 20
+    FILEMODE        shift and go to state 21
+    VARINFO         shift and go to state 22
+    DD              shift and go to state 23
+    NNODES          shift and go to state 24
+    NVARS           shift and go to state 25
+    NSUPPVARS       shift and go to state 26
+    SUPPVARNAMES    shift and go to state 27
+    ORDEREDVARNAMES shift and go to state 28
+    IDS             shift and go to state 29
+    PERMIDS         shift and go to state 30
+    AUXIDS          shift and go to state 31
+    NROOTS          shift and go to state 32
+    ROOTIDS         shift and go to state 33
+    ADD             shift and go to state 34
+    ROOTNAMES       shift and go to state 35
+
+    line                           shift and go to state 36
+    version                        shift and go to state 4
+    mode                           shift and go to state 5
+    varinfo                        shift and go to state 6
+    diagram_name                   shift and go to state 7
+    nnodes                         shift and go to state 8
+    nvars                          shift and go to state 9
+    nsupportvars                   shift and go to state 10
+    supportvars                    shift and go to state 11
+    orderedvars                    shift and go to state 12
+    varids                         shift and go to state 13
+    permids                        shift and go to state 14
+    auxids                         shift and go to state 15
+    nroots                         shift and go to state 16
+    rootids                        shift and go to state 17
+    algdd                          shift and go to state 18
+    rootnames                      shift and go to state 19
+
+state 3
+
+    (3) lines -> line .
+
+    VERSION         reduce using rule 3 (lines -> line .)
+    FILEMODE        reduce using rule 3 (lines -> line .)
+    VARINFO         reduce using rule 3 (lines -> line .)
+    DD              reduce using rule 3 (lines -> line .)
+    NNODES          reduce using rule 3 (lines -> line .)
+    NVARS           reduce using rule 3 (lines -> line .)
+    NSUPPVARS       reduce using rule 3 (lines -> line .)
+    SUPPVARNAMES    reduce using rule 3 (lines -> line .)
+    ORDEREDVARNAMES reduce using rule 3 (lines -> line .)
+    IDS             reduce using rule 3 (lines -> line .)
+    PERMIDS         reduce using rule 3 (lines -> line .)
+    AUXIDS          reduce using rule 3 (lines -> line .)
+    NROOTS          reduce using rule 3 (lines -> line .)
+    ROOTIDS         reduce using rule 3 (lines -> line .)
+    ADD             reduce using rule 3 (lines -> line .)
+    ROOTNAMES       reduce using rule 3 (lines -> line .)
+    $end            reduce using rule 3 (lines -> line .)
+
+
+state 4
+
+    (4) line -> version .
+
+    VERSION         reduce using rule 4 (line -> version .)
+    FILEMODE        reduce using rule 4 (line -> version .)
+    VARINFO         reduce using rule 4 (line -> version .)
+    DD              reduce using rule 4 (line -> version .)
+    NNODES          reduce using rule 4 (line -> version .)
+    NVARS           reduce using rule 4 (line -> version .)
+    NSUPPVARS       reduce using rule 4 (line -> version .)
+    SUPPVARNAMES    reduce using rule 4 (line -> version .)
+    ORDEREDVARNAMES reduce using rule 4 (line -> version .)
+    IDS             reduce using rule 4 (line -> version .)
+    PERMIDS         reduce using rule 4 (line -> version .)
+    AUXIDS          reduce using rule 4 (line -> version .)
+    NROOTS          reduce using rule 4 (line -> version .)
+    ROOTIDS         reduce using rule 4 (line -> version .)
+    ADD             reduce using rule 4 (line -> version .)
+    ROOTNAMES       reduce using rule 4 (line -> version .)
+    $end            reduce using rule 4 (line -> version .)
+
+
+state 5
+
+    (5) line -> mode .
+
+    VERSION         reduce using rule 5 (line -> mode .)
+    FILEMODE        reduce using rule 5 (line -> mode .)
+    VARINFO         reduce using rule 5 (line -> mode .)
+    DD              reduce using rule 5 (line -> mode .)
+    NNODES          reduce using rule 5 (line -> mode .)
+    NVARS           reduce using rule 5 (line -> mode .)
+    NSUPPVARS       reduce using rule 5 (line -> mode .)
+    SUPPVARNAMES    reduce using rule 5 (line -> mode .)
+    ORDEREDVARNAMES reduce using rule 5 (line -> mode .)
+    IDS             reduce using rule 5 (line -> mode .)
+    PERMIDS         reduce using rule 5 (line -> mode .)
+    AUXIDS          reduce using rule 5 (line -> mode .)
+    NROOTS          reduce using rule 5 (line -> mode .)
+    ROOTIDS         reduce using rule 5 (line -> mode .)
+    ADD             reduce using rule 5 (line -> mode .)
+    ROOTNAMES       reduce using rule 5 (line -> mode .)
+    $end            reduce using rule 5 (line -> mode .)
+
+
+state 6
+
+    (6) line -> varinfo .
+
+    VERSION         reduce using rule 6 (line -> varinfo .)
+    FILEMODE        reduce using rule 6 (line -> varinfo .)
+    VARINFO         reduce using rule 6 (line -> varinfo .)
+    DD              reduce using rule 6 (line -> varinfo .)
+    NNODES          reduce using rule 6 (line -> varinfo .)
+    NVARS           reduce using rule 6 (line -> varinfo .)
+    NSUPPVARS       reduce using rule 6 (line -> varinfo .)
+    SUPPVARNAMES    reduce using rule 6 (line -> varinfo .)
+    ORDEREDVARNAMES reduce using rule 6 (line -> varinfo .)
+    IDS             reduce using rule 6 (line -> varinfo .)
+    PERMIDS         reduce using rule 6 (line -> varinfo .)
+    AUXIDS          reduce using rule 6 (line -> varinfo .)
+    NROOTS          reduce using rule 6 (line -> varinfo .)
+    ROOTIDS         reduce using rule 6 (line -> varinfo .)
+    ADD             reduce using rule 6 (line -> varinfo .)
+    ROOTNAMES       reduce using rule 6 (line -> varinfo .)
+    $end            reduce using rule 6 (line -> varinfo .)
+
+
+state 7
+
+    (7) line -> diagram_name .
+
+    VERSION         reduce using rule 7 (line -> diagram_name .)
+    FILEMODE        reduce using rule 7 (line -> diagram_name .)
+    VARINFO         reduce using rule 7 (line -> diagram_name .)
+    DD              reduce using rule 7 (line -> diagram_name .)
+    NNODES          reduce using rule 7 (line -> diagram_name .)
+    NVARS           reduce using rule 7 (line -> diagram_name .)
+    NSUPPVARS       reduce using rule 7 (line -> diagram_name .)
+    SUPPVARNAMES    reduce using rule 7 (line -> diagram_name .)
+    ORDEREDVARNAMES reduce using rule 7 (line -> diagram_name .)
+    IDS             reduce using rule 7 (line -> diagram_name .)
+    PERMIDS         reduce using rule 7 (line -> diagram_name .)
+    AUXIDS          reduce using rule 7 (line -> diagram_name .)
+    NROOTS          reduce using rule 7 (line -> diagram_name .)
+    ROOTIDS         reduce using rule 7 (line -> diagram_name .)
+    ADD             reduce using rule 7 (line -> diagram_name .)
+    ROOTNAMES       reduce using rule 7 (line -> diagram_name .)
+    $end            reduce using rule 7 (line -> diagram_name .)
+
+
+state 8
+
+    (8) line -> nnodes .
+
+    VERSION         reduce using rule 8 (line -> nnodes .)
+    FILEMODE        reduce using rule 8 (line -> nnodes .)
+    VARINFO         reduce using rule 8 (line -> nnodes .)
+    DD              reduce using rule 8 (line -> nnodes .)
+    NNODES          reduce using rule 8 (line -> nnodes .)
+    NVARS           reduce using rule 8 (line -> nnodes .)
+    NSUPPVARS       reduce using rule 8 (line -> nnodes .)
+    SUPPVARNAMES    reduce using rule 8 (line -> nnodes .)
+    ORDEREDVARNAMES reduce using rule 8 (line -> nnodes .)
+    IDS             reduce using rule 8 (line -> nnodes .)
+    PERMIDS         reduce using rule 8 (line -> nnodes .)
+    AUXIDS          reduce using rule 8 (line -> nnodes .)
+    NROOTS          reduce using rule 8 (line -> nnodes .)
+    ROOTIDS         reduce using rule 8 (line -> nnodes .)
+    ADD             reduce using rule 8 (line -> nnodes .)
+    ROOTNAMES       reduce using rule 8 (line -> nnodes .)
+    $end            reduce using rule 8 (line -> nnodes .)
+
+
+state 9
+
+    (9) line -> nvars .
+
+    VERSION         reduce using rule 9 (line -> nvars .)
+    FILEMODE        reduce using rule 9 (line -> nvars .)
+    VARINFO         reduce using rule 9 (line -> nvars .)
+    DD              reduce using rule 9 (line -> nvars .)
+    NNODES          reduce using rule 9 (line -> nvars .)
+    NVARS           reduce using rule 9 (line -> nvars .)
+    NSUPPVARS       reduce using rule 9 (line -> nvars .)
+    SUPPVARNAMES    reduce using rule 9 (line -> nvars .)
+    ORDEREDVARNAMES reduce using rule 9 (line -> nvars .)
+    IDS             reduce using rule 9 (line -> nvars .)
+    PERMIDS         reduce using rule 9 (line -> nvars .)
+    AUXIDS          reduce using rule 9 (line -> nvars .)
+    NROOTS          reduce using rule 9 (line -> nvars .)
+    ROOTIDS         reduce using rule 9 (line -> nvars .)
+    ADD             reduce using rule 9 (line -> nvars .)
+    ROOTNAMES       reduce using rule 9 (line -> nvars .)
+    $end            reduce using rule 9 (line -> nvars .)
+
+
+state 10
+
+    (10) line -> nsupportvars .
+
+    VERSION         reduce using rule 10 (line -> nsupportvars .)
+    FILEMODE        reduce using rule 10 (line -> nsupportvars .)
+    VARINFO         reduce using rule 10 (line -> nsupportvars .)
+    DD              reduce using rule 10 (line -> nsupportvars .)
+    NNODES          reduce using rule 10 (line -> nsupportvars .)
+    NVARS           reduce using rule 10 (line -> nsupportvars .)
+    NSUPPVARS       reduce using rule 10 (line -> nsupportvars .)
+    SUPPVARNAMES    reduce using rule 10 (line -> nsupportvars .)
+    ORDEREDVARNAMES reduce using rule 10 (line -> nsupportvars .)
+    IDS             reduce using rule 10 (line -> nsupportvars .)
+    PERMIDS         reduce using rule 10 (line -> nsupportvars .)
+    AUXIDS          reduce using rule 10 (line -> nsupportvars .)
+    NROOTS          reduce using rule 10 (line -> nsupportvars .)
+    ROOTIDS         reduce using rule 10 (line -> nsupportvars .)
+    ADD             reduce using rule 10 (line -> nsupportvars .)
+    ROOTNAMES       reduce using rule 10 (line -> nsupportvars .)
+    $end            reduce using rule 10 (line -> nsupportvars .)
+
+
+state 11
+
+    (11) line -> supportvars .
+
+    VERSION         reduce using rule 11 (line -> supportvars .)
+    FILEMODE        reduce using rule 11 (line -> supportvars .)
+    VARINFO         reduce using rule 11 (line -> supportvars .)
+    DD              reduce using rule 11 (line -> supportvars .)
+    NNODES          reduce using rule 11 (line -> supportvars .)
+    NVARS           reduce using rule 11 (line -> supportvars .)
+    NSUPPVARS       reduce using rule 11 (line -> supportvars .)
+    SUPPVARNAMES    reduce using rule 11 (line -> supportvars .)
+    ORDEREDVARNAMES reduce using rule 11 (line -> supportvars .)
+    IDS             reduce using rule 11 (line -> supportvars .)
+    PERMIDS         reduce using rule 11 (line -> supportvars .)
+    AUXIDS          reduce using rule 11 (line -> supportvars .)
+    NROOTS          reduce using rule 11 (line -> supportvars .)
+    ROOTIDS         reduce using rule 11 (line -> supportvars .)
+    ADD             reduce using rule 11 (line -> supportvars .)
+    ROOTNAMES       reduce using rule 11 (line -> supportvars .)
+    $end            reduce using rule 11 (line -> supportvars .)
+
+
+state 12
+
+    (12) line -> orderedvars .
+
+    VERSION         reduce using rule 12 (line -> orderedvars .)
+    FILEMODE        reduce using rule 12 (line -> orderedvars .)
+    VARINFO         reduce using rule 12 (line -> orderedvars .)
+    DD              reduce using rule 12 (line -> orderedvars .)
+    NNODES          reduce using rule 12 (line -> orderedvars .)
+    NVARS           reduce using rule 12 (line -> orderedvars .)
+    NSUPPVARS       reduce using rule 12 (line -> orderedvars .)
+    SUPPVARNAMES    reduce using rule 12 (line -> orderedvars .)
+    ORDEREDVARNAMES reduce using rule 12 (line -> orderedvars .)
+    IDS             reduce using rule 12 (line -> orderedvars .)
+    PERMIDS         reduce using rule 12 (line -> orderedvars .)
+    AUXIDS          reduce using rule 12 (line -> orderedvars .)
+    NROOTS          reduce using rule 12 (line -> orderedvars .)
+    ROOTIDS         reduce using rule 12 (line -> orderedvars .)
+    ADD             reduce using rule 12 (line -> orderedvars .)
+    ROOTNAMES       reduce using rule 12 (line -> orderedvars .)
+    $end            reduce using rule 12 (line -> orderedvars .)
+
+
+state 13
+
+    (13) line -> varids .
+
+    VERSION         reduce using rule 13 (line -> varids .)
+    FILEMODE        reduce using rule 13 (line -> varids .)
+    VARINFO         reduce using rule 13 (line -> varids .)
+    DD              reduce using rule 13 (line -> varids .)
+    NNODES          reduce using rule 13 (line -> varids .)
+    NVARS           reduce using rule 13 (line -> varids .)
+    NSUPPVARS       reduce using rule 13 (line -> varids .)
+    SUPPVARNAMES    reduce using rule 13 (line -> varids .)
+    ORDEREDVARNAMES reduce using rule 13 (line -> varids .)
+    IDS             reduce using rule 13 (line -> varids .)
+    PERMIDS         reduce using rule 13 (line -> varids .)
+    AUXIDS          reduce using rule 13 (line -> varids .)
+    NROOTS          reduce using rule 13 (line -> varids .)
+    ROOTIDS         reduce using rule 13 (line -> varids .)
+    ADD             reduce using rule 13 (line -> varids .)
+    ROOTNAMES       reduce using rule 13 (line -> varids .)
+    $end            reduce using rule 13 (line -> varids .)
+
+
+state 14
+
+    (14) line -> permids .
+
+    VERSION         reduce using rule 14 (line -> permids .)
+    FILEMODE        reduce using rule 14 (line -> permids .)
+    VARINFO         reduce using rule 14 (line -> permids .)
+    DD              reduce using rule 14 (line -> permids .)
+    NNODES          reduce using rule 14 (line -> permids .)
+    NVARS           reduce using rule 14 (line -> permids .)
+    NSUPPVARS       reduce using rule 14 (line -> permids .)
+    SUPPVARNAMES    reduce using rule 14 (line -> permids .)
+    ORDEREDVARNAMES reduce using rule 14 (line -> permids .)
+    IDS             reduce using rule 14 (line -> permids .)
+    PERMIDS         reduce using rule 14 (line -> permids .)
+    AUXIDS          reduce using rule 14 (line -> permids .)
+    NROOTS          reduce using rule 14 (line -> permids .)
+    ROOTIDS         reduce using rule 14 (line -> permids .)
+    ADD             reduce using rule 14 (line -> permids .)
+    ROOTNAMES       reduce using rule 14 (line -> permids .)
+    $end            reduce using rule 14 (line -> permids .)
+
+
+state 15
+
+    (15) line -> auxids .
+
+    VERSION         reduce using rule 15 (line -> auxids .)
+    FILEMODE        reduce using rule 15 (line -> auxids .)
+    VARINFO         reduce using rule 15 (line -> auxids .)
+    DD              reduce using rule 15 (line -> auxids .)
+    NNODES          reduce using rule 15 (line -> auxids .)
+    NVARS           reduce using rule 15 (line -> auxids .)
+    NSUPPVARS       reduce using rule 15 (line -> auxids .)
+    SUPPVARNAMES    reduce using rule 15 (line -> auxids .)
+    ORDEREDVARNAMES reduce using rule 15 (line -> auxids .)
+    IDS             reduce using rule 15 (line -> auxids .)
+    PERMIDS         reduce using rule 15 (line -> auxids .)
+    AUXIDS          reduce using rule 15 (line -> auxids .)
+    NROOTS          reduce using rule 15 (line -> auxids .)
+    ROOTIDS         reduce using rule 15 (line -> auxids .)
+    ADD             reduce using rule 15 (line -> auxids .)
+    ROOTNAMES       reduce using rule 15 (line -> auxids .)
+    $end            reduce using rule 15 (line -> auxids .)
+
+
+state 16
+
+    (16) line -> nroots .
+
+    VERSION         reduce using rule 16 (line -> nroots .)
+    FILEMODE        reduce using rule 16 (line -> nroots .)
+    VARINFO         reduce using rule 16 (line -> nroots .)
+    DD              reduce using rule 16 (line -> nroots .)
+    NNODES          reduce using rule 16 (line -> nroots .)
+    NVARS           reduce using rule 16 (line -> nroots .)
+    NSUPPVARS       reduce using rule 16 (line -> nroots .)
+    SUPPVARNAMES    reduce using rule 16 (line -> nroots .)
+    ORDEREDVARNAMES reduce using rule 16 (line -> nroots .)
+    IDS             reduce using rule 16 (line -> nroots .)
+    PERMIDS         reduce using rule 16 (line -> nroots .)
+    AUXIDS          reduce using rule 16 (line -> nroots .)
+    NROOTS          reduce using rule 16 (line -> nroots .)
+    ROOTIDS         reduce using rule 16 (line -> nroots .)
+    ADD             reduce using rule 16 (line -> nroots .)
+    ROOTNAMES       reduce using rule 16 (line -> nroots .)
+    $end            reduce using rule 16 (line -> nroots .)
+
+
+state 17
+
+    (17) line -> rootids .
+
+    VERSION         reduce using rule 17 (line -> rootids .)
+    FILEMODE        reduce using rule 17 (line -> rootids .)
+    VARINFO         reduce using rule 17 (line -> rootids .)
+    DD              reduce using rule 17 (line -> rootids .)
+    NNODES          reduce using rule 17 (line -> rootids .)
+    NVARS           reduce using rule 17 (line -> rootids .)
+    NSUPPVARS       reduce using rule 17 (line -> rootids .)
+    SUPPVARNAMES    reduce using rule 17 (line -> rootids .)
+    ORDEREDVARNAMES reduce using rule 17 (line -> rootids .)
+    IDS             reduce using rule 17 (line -> rootids .)
+    PERMIDS         reduce using rule 17 (line -> rootids .)
+    AUXIDS          reduce using rule 17 (line -> rootids .)
+    NROOTS          reduce using rule 17 (line -> rootids .)
+    ROOTIDS         reduce using rule 17 (line -> rootids .)
+    ADD             reduce using rule 17 (line -> rootids .)
+    ROOTNAMES       reduce using rule 17 (line -> rootids .)
+    $end            reduce using rule 17 (line -> rootids .)
+
+
+state 18
+
+    (18) line -> algdd .
+
+    VERSION         reduce using rule 18 (line -> algdd .)
+    FILEMODE        reduce using rule 18 (line -> algdd .)
+    VARINFO         reduce using rule 18 (line -> algdd .)
+    DD              reduce using rule 18 (line -> algdd .)
+    NNODES          reduce using rule 18 (line -> algdd .)
+    NVARS           reduce using rule 18 (line -> algdd .)
+    NSUPPVARS       reduce using rule 18 (line -> algdd .)
+    SUPPVARNAMES    reduce using rule 18 (line -> algdd .)
+    ORDEREDVARNAMES reduce using rule 18 (line -> algdd .)
+    IDS             reduce using rule 18 (line -> algdd .)
+    PERMIDS         reduce using rule 18 (line -> algdd .)
+    AUXIDS          reduce using rule 18 (line -> algdd .)
+    NROOTS          reduce using rule 18 (line -> algdd .)
+    ROOTIDS         reduce using rule 18 (line -> algdd .)
+    ADD             reduce using rule 18 (line -> algdd .)
+    ROOTNAMES       reduce using rule 18 (line -> algdd .)
+    $end            reduce using rule 18 (line -> algdd .)
+
+
+state 19
+
+    (19) line -> rootnames .
+
+    VERSION         reduce using rule 19 (line -> rootnames .)
+    FILEMODE        reduce using rule 19 (line -> rootnames .)
+    VARINFO         reduce using rule 19 (line -> rootnames .)
+    DD              reduce using rule 19 (line -> rootnames .)
+    NNODES          reduce using rule 19 (line -> rootnames .)
+    NVARS           reduce using rule 19 (line -> rootnames .)
+    NSUPPVARS       reduce using rule 19 (line -> rootnames .)
+    SUPPVARNAMES    reduce using rule 19 (line -> rootnames .)
+    ORDEREDVARNAMES reduce using rule 19 (line -> rootnames .)
+    IDS             reduce using rule 19 (line -> rootnames .)
+    PERMIDS         reduce using rule 19 (line -> rootnames .)
+    AUXIDS          reduce using rule 19 (line -> rootnames .)
+    NROOTS          reduce using rule 19 (line -> rootnames .)
+    ROOTIDS         reduce using rule 19 (line -> rootnames .)
+    ADD             reduce using rule 19 (line -> rootnames .)
+    ROOTNAMES       reduce using rule 19 (line -> rootnames .)
+    $end            reduce using rule 19 (line -> rootnames .)
+
+
+state 20
+
+    (20) version -> VERSION . name MINUS number DOT number
+    (44) name -> . NAME
+
+    NAME            shift and go to state 38
+
+    name                           shift and go to state 37
+
+state 21
+
+    (21) mode -> FILEMODE . NAME
+
+    NAME            shift and go to state 39
+
+
+state 22
+
+    (22) varinfo -> VARINFO . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 40
+
+state 23
+
+    (23) diagram_name -> DD . name
+    (44) name -> . NAME
+
+    NAME            shift and go to state 38
+
+    name                           shift and go to state 43
+
+state 24
+
+    (24) nnodes -> NNODES . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 44
+
+state 25
+
+    (25) nvars -> NVARS . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 45
+
+state 26
+
+    (26) nsupportvars -> NSUPPVARS . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 46
+
+state 27
+
+    (27) supportvars -> SUPPVARNAMES . varnames
+    (29) varnames -> . varnames varname
+    (30) varnames -> . varname
+    (31) varname -> . name
+    (32) varname -> . number
+    (44) name -> . NAME
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NAME            shift and go to state 38
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    varnames                       shift and go to state 47
+    varname                        shift and go to state 48
+    name                           shift and go to state 49
+    number                         shift and go to state 50
+
+state 28
+
+    (28) orderedvars -> ORDEREDVARNAMES . varnames
+    (29) varnames -> . varnames varname
+    (30) varnames -> . varname
+    (31) varname -> . name
+    (32) varname -> . number
+    (44) name -> . NAME
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NAME            shift and go to state 38
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    varnames                       shift and go to state 51
+    varname                        shift and go to state 48
+    name                           shift and go to state 49
+    number                         shift and go to state 50
+
+state 29
+
+    (33) varids -> IDS . integers
+    (36) integers -> . integers number
+    (37) integers -> . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    integers                       shift and go to state 52
+    number                         shift and go to state 53
+
+state 30
+
+    (34) permids -> PERMIDS . integers
+    (36) integers -> . integers number
+    (37) integers -> . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    integers                       shift and go to state 54
+    number                         shift and go to state 53
+
+state 31
+
+    (35) auxids -> AUXIDS . integers
+    (36) integers -> . integers number
+    (37) integers -> . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    integers                       shift and go to state 55
+    number                         shift and go to state 53
+
+state 32
+
+    (38) nroots -> NROOTS . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 56
+
+state 33
+
+    (39) rootids -> ROOTIDS . integers
+    (36) integers -> . integers number
+    (37) integers -> . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    integers                       shift and go to state 57
+    number                         shift and go to state 53
+
+state 34
+
+    (41) algdd -> ADD .
+
+    VERSION         reduce using rule 41 (algdd -> ADD .)
+    FILEMODE        reduce using rule 41 (algdd -> ADD .)
+    VARINFO         reduce using rule 41 (algdd -> ADD .)
+    DD              reduce using rule 41 (algdd -> ADD .)
+    NNODES          reduce using rule 41 (algdd -> ADD .)
+    NVARS           reduce using rule 41 (algdd -> ADD .)
+    NSUPPVARS       reduce using rule 41 (algdd -> ADD .)
+    SUPPVARNAMES    reduce using rule 41 (algdd -> ADD .)
+    ORDEREDVARNAMES reduce using rule 41 (algdd -> ADD .)
+    IDS             reduce using rule 41 (algdd -> ADD .)
+    PERMIDS         reduce using rule 41 (algdd -> ADD .)
+    AUXIDS          reduce using rule 41 (algdd -> ADD .)
+    NROOTS          reduce using rule 41 (algdd -> ADD .)
+    ROOTIDS         reduce using rule 41 (algdd -> ADD .)
+    ADD             reduce using rule 41 (algdd -> ADD .)
+    ROOTNAMES       reduce using rule 41 (algdd -> ADD .)
+    $end            reduce using rule 41 (algdd -> ADD .)
+
+
+state 35
+
+    (40) rootnames -> ROOTNAMES . varnames
+    (29) varnames -> . varnames varname
+    (30) varnames -> . varname
+    (31) varname -> . name
+    (32) varname -> . number
+    (44) name -> . NAME
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NAME            shift and go to state 38
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    varnames                       shift and go to state 58
+    varname                        shift and go to state 48
+    name                           shift and go to state 49
+    number                         shift and go to state 50
+
+state 36
+
+    (2) lines -> lines line .
+
+    VERSION         reduce using rule 2 (lines -> lines line .)
+    FILEMODE        reduce using rule 2 (lines -> lines line .)
+    VARINFO         reduce using rule 2 (lines -> lines line .)
+    DD              reduce using rule 2 (lines -> lines line .)
+    NNODES          reduce using rule 2 (lines -> lines line .)
+    NVARS           reduce using rule 2 (lines -> lines line .)
+    NSUPPVARS       reduce using rule 2 (lines -> lines line .)
+    SUPPVARNAMES    reduce using rule 2 (lines -> lines line .)
+    ORDEREDVARNAMES reduce using rule 2 (lines -> lines line .)
+    IDS             reduce using rule 2 (lines -> lines line .)
+    PERMIDS         reduce using rule 2 (lines -> lines line .)
+    AUXIDS          reduce using rule 2 (lines -> lines line .)
+    NROOTS          reduce using rule 2 (lines -> lines line .)
+    ROOTIDS         reduce using rule 2 (lines -> lines line .)
+    ADD             reduce using rule 2 (lines -> lines line .)
+    ROOTNAMES       reduce using rule 2 (lines -> lines line .)
+    $end            reduce using rule 2 (lines -> lines line .)
+
+
+state 37
+
+    (20) version -> VERSION name . MINUS number DOT number
+
+    MINUS           shift and go to state 59
+
+
+state 38
+
+    (44) name -> NAME .
+
+    MINUS           reduce using rule 44 (name -> NAME .)
+    VERSION         reduce using rule 44 (name -> NAME .)
+    FILEMODE        reduce using rule 44 (name -> NAME .)
+    VARINFO         reduce using rule 44 (name -> NAME .)
+    DD              reduce using rule 44 (name -> NAME .)
+    NNODES          reduce using rule 44 (name -> NAME .)
+    NVARS           reduce using rule 44 (name -> NAME .)
+    NSUPPVARS       reduce using rule 44 (name -> NAME .)
+    SUPPVARNAMES    reduce using rule 44 (name -> NAME .)
+    ORDEREDVARNAMES reduce using rule 44 (name -> NAME .)
+    IDS             reduce using rule 44 (name -> NAME .)
+    PERMIDS         reduce using rule 44 (name -> NAME .)
+    AUXIDS          reduce using rule 44 (name -> NAME .)
+    NROOTS          reduce using rule 44 (name -> NAME .)
+    ROOTIDS         reduce using rule 44 (name -> NAME .)
+    ADD             reduce using rule 44 (name -> NAME .)
+    ROOTNAMES       reduce using rule 44 (name -> NAME .)
+    $end            reduce using rule 44 (name -> NAME .)
+    NAME            reduce using rule 44 (name -> NAME .)
+    NUMBER          reduce using rule 44 (name -> NAME .)
+
+
+state 39
+
+    (21) mode -> FILEMODE NAME .
+
+    VERSION         reduce using rule 21 (mode -> FILEMODE NAME .)
+    FILEMODE        reduce using rule 21 (mode -> FILEMODE NAME .)
+    VARINFO         reduce using rule 21 (mode -> FILEMODE NAME .)
+    DD              reduce using rule 21 (mode -> FILEMODE NAME .)
+    NNODES          reduce using rule 21 (mode -> FILEMODE NAME .)
+    NVARS           reduce using rule 21 (mode -> FILEMODE NAME .)
+    NSUPPVARS       reduce using rule 21 (mode -> FILEMODE NAME .)
+    SUPPVARNAMES    reduce using rule 21 (mode -> FILEMODE NAME .)
+    ORDEREDVARNAMES reduce using rule 21 (mode -> FILEMODE NAME .)
+    IDS             reduce using rule 21 (mode -> FILEMODE NAME .)
+    PERMIDS         reduce using rule 21 (mode -> FILEMODE NAME .)
+    AUXIDS          reduce using rule 21 (mode -> FILEMODE NAME .)
+    NROOTS          reduce using rule 21 (mode -> FILEMODE NAME .)
+    ROOTIDS         reduce using rule 21 (mode -> FILEMODE NAME .)
+    ADD             reduce using rule 21 (mode -> FILEMODE NAME .)
+    ROOTNAMES       reduce using rule 21 (mode -> FILEMODE NAME .)
+    $end            reduce using rule 21 (mode -> FILEMODE NAME .)
+
+
+state 40
+
+    (22) varinfo -> VARINFO number .
+
+    VERSION         reduce using rule 22 (varinfo -> VARINFO number .)
+    FILEMODE        reduce using rule 22 (varinfo -> VARINFO number .)
+    VARINFO         reduce using rule 22 (varinfo -> VARINFO number .)
+    DD              reduce using rule 22 (varinfo -> VARINFO number .)
+    NNODES          reduce using rule 22 (varinfo -> VARINFO number .)
+    NVARS           reduce using rule 22 (varinfo -> VARINFO number .)
+    NSUPPVARS       reduce using rule 22 (varinfo -> VARINFO number .)
+    SUPPVARNAMES    reduce using rule 22 (varinfo -> VARINFO number .)
+    ORDEREDVARNAMES reduce using rule 22 (varinfo -> VARINFO number .)
+    IDS             reduce using rule 22 (varinfo -> VARINFO number .)
+    PERMIDS         reduce using rule 22 (varinfo -> VARINFO number .)
+    AUXIDS          reduce using rule 22 (varinfo -> VARINFO number .)
+    NROOTS          reduce using rule 22 (varinfo -> VARINFO number .)
+    ROOTIDS         reduce using rule 22 (varinfo -> VARINFO number .)
+    ADD             reduce using rule 22 (varinfo -> VARINFO number .)
+    ROOTNAMES       reduce using rule 22 (varinfo -> VARINFO number .)
+    $end            reduce using rule 22 (varinfo -> VARINFO number .)
+
+
+state 41
+
+    (42) number -> NUMBER .
+
+    VERSION         reduce using rule 42 (number -> NUMBER .)
+    FILEMODE        reduce using rule 42 (number -> NUMBER .)
+    VARINFO         reduce using rule 42 (number -> NUMBER .)
+    DD              reduce using rule 42 (number -> NUMBER .)
+    NNODES          reduce using rule 42 (number -> NUMBER .)
+    NVARS           reduce using rule 42 (number -> NUMBER .)
+    NSUPPVARS       reduce using rule 42 (number -> NUMBER .)
+    SUPPVARNAMES    reduce using rule 42 (number -> NUMBER .)
+    ORDEREDVARNAMES reduce using rule 42 (number -> NUMBER .)
+    IDS             reduce using rule 42 (number -> NUMBER .)
+    PERMIDS         reduce using rule 42 (number -> NUMBER .)
+    AUXIDS          reduce using rule 42 (number -> NUMBER .)
+    NROOTS          reduce using rule 42 (number -> NUMBER .)
+    ROOTIDS         reduce using rule 42 (number -> NUMBER .)
+    ADD             reduce using rule 42 (number -> NUMBER .)
+    ROOTNAMES       reduce using rule 42 (number -> NUMBER .)
+    $end            reduce using rule 42 (number -> NUMBER .)
+    NAME            reduce using rule 42 (number -> NUMBER .)
+    NUMBER          reduce using rule 42 (number -> NUMBER .)
+    MINUS           reduce using rule 42 (number -> NUMBER .)
+    DOT             reduce using rule 42 (number -> NUMBER .)
+
+
+state 42
+
+    (43) number -> MINUS . NUMBER
+
+    NUMBER          shift and go to state 60
+
+
+state 43
+
+    (23) diagram_name -> DD name .
+
+    VERSION         reduce using rule 23 (diagram_name -> DD name .)
+    FILEMODE        reduce using rule 23 (diagram_name -> DD name .)
+    VARINFO         reduce using rule 23 (diagram_name -> DD name .)
+    DD              reduce using rule 23 (diagram_name -> DD name .)
+    NNODES          reduce using rule 23 (diagram_name -> DD name .)
+    NVARS           reduce using rule 23 (diagram_name -> DD name .)
+    NSUPPVARS       reduce using rule 23 (diagram_name -> DD name .)
+    SUPPVARNAMES    reduce using rule 23 (diagram_name -> DD name .)
+    ORDEREDVARNAMES reduce using rule 23 (diagram_name -> DD name .)
+    IDS             reduce using rule 23 (diagram_name -> DD name .)
+    PERMIDS         reduce using rule 23 (diagram_name -> DD name .)
+    AUXIDS          reduce using rule 23 (diagram_name -> DD name .)
+    NROOTS          reduce using rule 23 (diagram_name -> DD name .)
+    ROOTIDS         reduce using rule 23 (diagram_name -> DD name .)
+    ADD             reduce using rule 23 (diagram_name -> DD name .)
+    ROOTNAMES       reduce using rule 23 (diagram_name -> DD name .)
+    $end            reduce using rule 23 (diagram_name -> DD name .)
+
+
+state 44
+
+    (24) nnodes -> NNODES number .
+
+    VERSION         reduce using rule 24 (nnodes -> NNODES number .)
+    FILEMODE        reduce using rule 24 (nnodes -> NNODES number .)
+    VARINFO         reduce using rule 24 (nnodes -> NNODES number .)
+    DD              reduce using rule 24 (nnodes -> NNODES number .)
+    NNODES          reduce using rule 24 (nnodes -> NNODES number .)
+    NVARS           reduce using rule 24 (nnodes -> NNODES number .)
+    NSUPPVARS       reduce using rule 24 (nnodes -> NNODES number .)
+    SUPPVARNAMES    reduce using rule 24 (nnodes -> NNODES number .)
+    ORDEREDVARNAMES reduce using rule 24 (nnodes -> NNODES number .)
+    IDS             reduce using rule 24 (nnodes -> NNODES number .)
+    PERMIDS         reduce using rule 24 (nnodes -> NNODES number .)
+    AUXIDS          reduce using rule 24 (nnodes -> NNODES number .)
+    NROOTS          reduce using rule 24 (nnodes -> NNODES number .)
+    ROOTIDS         reduce using rule 24 (nnodes -> NNODES number .)
+    ADD             reduce using rule 24 (nnodes -> NNODES number .)
+    ROOTNAMES       reduce using rule 24 (nnodes -> NNODES number .)
+    $end            reduce using rule 24 (nnodes -> NNODES number .)
+
+
+state 45
+
+    (25) nvars -> NVARS number .
+
+    VERSION         reduce using rule 25 (nvars -> NVARS number .)
+    FILEMODE        reduce using rule 25 (nvars -> NVARS number .)
+    VARINFO         reduce using rule 25 (nvars -> NVARS number .)
+    DD              reduce using rule 25 (nvars -> NVARS number .)
+    NNODES          reduce using rule 25 (nvars -> NVARS number .)
+    NVARS           reduce using rule 25 (nvars -> NVARS number .)
+    NSUPPVARS       reduce using rule 25 (nvars -> NVARS number .)
+    SUPPVARNAMES    reduce using rule 25 (nvars -> NVARS number .)
+    ORDEREDVARNAMES reduce using rule 25 (nvars -> NVARS number .)
+    IDS             reduce using rule 25 (nvars -> NVARS number .)
+    PERMIDS         reduce using rule 25 (nvars -> NVARS number .)
+    AUXIDS          reduce using rule 25 (nvars -> NVARS number .)
+    NROOTS          reduce using rule 25 (nvars -> NVARS number .)
+    ROOTIDS         reduce using rule 25 (nvars -> NVARS number .)
+    ADD             reduce using rule 25 (nvars -> NVARS number .)
+    ROOTNAMES       reduce using rule 25 (nvars -> NVARS number .)
+    $end            reduce using rule 25 (nvars -> NVARS number .)
+
+
+state 46
+
+    (26) nsupportvars -> NSUPPVARS number .
+
+    VERSION         reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    FILEMODE        reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    VARINFO         reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    DD              reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    NNODES          reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    NVARS           reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    NSUPPVARS       reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    SUPPVARNAMES    reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    ORDEREDVARNAMES reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    IDS             reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    PERMIDS         reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    AUXIDS          reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    NROOTS          reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    ROOTIDS         reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    ADD             reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    ROOTNAMES       reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+    $end            reduce using rule 26 (nsupportvars -> NSUPPVARS number .)
+
+
+state 47
+
+    (27) supportvars -> SUPPVARNAMES varnames .
+    (29) varnames -> varnames . varname
+    (31) varname -> . name
+    (32) varname -> . number
+    (44) name -> . NAME
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    FILEMODE        reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    VARINFO         reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    DD              reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    NNODES          reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    NVARS           reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    NSUPPVARS       reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    SUPPVARNAMES    reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    ORDEREDVARNAMES reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    IDS             reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    PERMIDS         reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    AUXIDS          reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    NROOTS          reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    ROOTIDS         reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    ADD             reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    ROOTNAMES       reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    $end            reduce using rule 27 (supportvars -> SUPPVARNAMES varnames .)
+    NAME            shift and go to state 38
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    varname                        shift and go to state 61
+    name                           shift and go to state 49
+    number                         shift and go to state 50
+
+state 48
+
+    (30) varnames -> varname .
+
+    NAME            reduce using rule 30 (varnames -> varname .)
+    NUMBER          reduce using rule 30 (varnames -> varname .)
+    MINUS           reduce using rule 30 (varnames -> varname .)
+    VERSION         reduce using rule 30 (varnames -> varname .)
+    FILEMODE        reduce using rule 30 (varnames -> varname .)
+    VARINFO         reduce using rule 30 (varnames -> varname .)
+    DD              reduce using rule 30 (varnames -> varname .)
+    NNODES          reduce using rule 30 (varnames -> varname .)
+    NVARS           reduce using rule 30 (varnames -> varname .)
+    NSUPPVARS       reduce using rule 30 (varnames -> varname .)
+    SUPPVARNAMES    reduce using rule 30 (varnames -> varname .)
+    ORDEREDVARNAMES reduce using rule 30 (varnames -> varname .)
+    IDS             reduce using rule 30 (varnames -> varname .)
+    PERMIDS         reduce using rule 30 (varnames -> varname .)
+    AUXIDS          reduce using rule 30 (varnames -> varname .)
+    NROOTS          reduce using rule 30 (varnames -> varname .)
+    ROOTIDS         reduce using rule 30 (varnames -> varname .)
+    ADD             reduce using rule 30 (varnames -> varname .)
+    ROOTNAMES       reduce using rule 30 (varnames -> varname .)
+    $end            reduce using rule 30 (varnames -> varname .)
+
+
+state 49
+
+    (31) varname -> name .
+
+    NAME            reduce using rule 31 (varname -> name .)
+    NUMBER          reduce using rule 31 (varname -> name .)
+    MINUS           reduce using rule 31 (varname -> name .)
+    VERSION         reduce using rule 31 (varname -> name .)
+    FILEMODE        reduce using rule 31 (varname -> name .)
+    VARINFO         reduce using rule 31 (varname -> name .)
+    DD              reduce using rule 31 (varname -> name .)
+    NNODES          reduce using rule 31 (varname -> name .)
+    NVARS           reduce using rule 31 (varname -> name .)
+    NSUPPVARS       reduce using rule 31 (varname -> name .)
+    SUPPVARNAMES    reduce using rule 31 (varname -> name .)
+    ORDEREDVARNAMES reduce using rule 31 (varname -> name .)
+    IDS             reduce using rule 31 (varname -> name .)
+    PERMIDS         reduce using rule 31 (varname -> name .)
+    AUXIDS          reduce using rule 31 (varname -> name .)
+    NROOTS          reduce using rule 31 (varname -> name .)
+    ROOTIDS         reduce using rule 31 (varname -> name .)
+    ADD             reduce using rule 31 (varname -> name .)
+    ROOTNAMES       reduce using rule 31 (varname -> name .)
+    $end            reduce using rule 31 (varname -> name .)
+
+
+state 50
+
+    (32) varname -> number .
+
+    NAME            reduce using rule 32 (varname -> number .)
+    NUMBER          reduce using rule 32 (varname -> number .)
+    MINUS           reduce using rule 32 (varname -> number .)
+    VERSION         reduce using rule 32 (varname -> number .)
+    FILEMODE        reduce using rule 32 (varname -> number .)
+    VARINFO         reduce using rule 32 (varname -> number .)
+    DD              reduce using rule 32 (varname -> number .)
+    NNODES          reduce using rule 32 (varname -> number .)
+    NVARS           reduce using rule 32 (varname -> number .)
+    NSUPPVARS       reduce using rule 32 (varname -> number .)
+    SUPPVARNAMES    reduce using rule 32 (varname -> number .)
+    ORDEREDVARNAMES reduce using rule 32 (varname -> number .)
+    IDS             reduce using rule 32 (varname -> number .)
+    PERMIDS         reduce using rule 32 (varname -> number .)
+    AUXIDS          reduce using rule 32 (varname -> number .)
+    NROOTS          reduce using rule 32 (varname -> number .)
+    ROOTIDS         reduce using rule 32 (varname -> number .)
+    ADD             reduce using rule 32 (varname -> number .)
+    ROOTNAMES       reduce using rule 32 (varname -> number .)
+    $end            reduce using rule 32 (varname -> number .)
+
+
+state 51
+
+    (28) orderedvars -> ORDEREDVARNAMES varnames .
+    (29) varnames -> varnames . varname
+    (31) varname -> . name
+    (32) varname -> . number
+    (44) name -> . NAME
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    FILEMODE        reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    VARINFO         reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    DD              reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    NNODES          reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    NVARS           reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    NSUPPVARS       reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    SUPPVARNAMES    reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    ORDEREDVARNAMES reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    IDS             reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    PERMIDS         reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    AUXIDS          reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    NROOTS          reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    ROOTIDS         reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    ADD             reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    ROOTNAMES       reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    $end            reduce using rule 28 (orderedvars -> ORDEREDVARNAMES varnames .)
+    NAME            shift and go to state 38
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    varname                        shift and go to state 61
+    name                           shift and go to state 49
+    number                         shift and go to state 50
+
+state 52
+
+    (33) varids -> IDS integers .
+    (36) integers -> integers . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 33 (varids -> IDS integers .)
+    FILEMODE        reduce using rule 33 (varids -> IDS integers .)
+    VARINFO         reduce using rule 33 (varids -> IDS integers .)
+    DD              reduce using rule 33 (varids -> IDS integers .)
+    NNODES          reduce using rule 33 (varids -> IDS integers .)
+    NVARS           reduce using rule 33 (varids -> IDS integers .)
+    NSUPPVARS       reduce using rule 33 (varids -> IDS integers .)
+    SUPPVARNAMES    reduce using rule 33 (varids -> IDS integers .)
+    ORDEREDVARNAMES reduce using rule 33 (varids -> IDS integers .)
+    IDS             reduce using rule 33 (varids -> IDS integers .)
+    PERMIDS         reduce using rule 33 (varids -> IDS integers .)
+    AUXIDS          reduce using rule 33 (varids -> IDS integers .)
+    NROOTS          reduce using rule 33 (varids -> IDS integers .)
+    ROOTIDS         reduce using rule 33 (varids -> IDS integers .)
+    ADD             reduce using rule 33 (varids -> IDS integers .)
+    ROOTNAMES       reduce using rule 33 (varids -> IDS integers .)
+    $end            reduce using rule 33 (varids -> IDS integers .)
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 62
+
+state 53
+
+    (37) integers -> number .
+
+    NUMBER          reduce using rule 37 (integers -> number .)
+    MINUS           reduce using rule 37 (integers -> number .)
+    VERSION         reduce using rule 37 (integers -> number .)
+    FILEMODE        reduce using rule 37 (integers -> number .)
+    VARINFO         reduce using rule 37 (integers -> number .)
+    DD              reduce using rule 37 (integers -> number .)
+    NNODES          reduce using rule 37 (integers -> number .)
+    NVARS           reduce using rule 37 (integers -> number .)
+    NSUPPVARS       reduce using rule 37 (integers -> number .)
+    SUPPVARNAMES    reduce using rule 37 (integers -> number .)
+    ORDEREDVARNAMES reduce using rule 37 (integers -> number .)
+    IDS             reduce using rule 37 (integers -> number .)
+    PERMIDS         reduce using rule 37 (integers -> number .)
+    AUXIDS          reduce using rule 37 (integers -> number .)
+    NROOTS          reduce using rule 37 (integers -> number .)
+    ROOTIDS         reduce using rule 37 (integers -> number .)
+    ADD             reduce using rule 37 (integers -> number .)
+    ROOTNAMES       reduce using rule 37 (integers -> number .)
+    $end            reduce using rule 37 (integers -> number .)
+
+
+state 54
+
+    (34) permids -> PERMIDS integers .
+    (36) integers -> integers . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 34 (permids -> PERMIDS integers .)
+    FILEMODE        reduce using rule 34 (permids -> PERMIDS integers .)
+    VARINFO         reduce using rule 34 (permids -> PERMIDS integers .)
+    DD              reduce using rule 34 (permids -> PERMIDS integers .)
+    NNODES          reduce using rule 34 (permids -> PERMIDS integers .)
+    NVARS           reduce using rule 34 (permids -> PERMIDS integers .)
+    NSUPPVARS       reduce using rule 34 (permids -> PERMIDS integers .)
+    SUPPVARNAMES    reduce using rule 34 (permids -> PERMIDS integers .)
+    ORDEREDVARNAMES reduce using rule 34 (permids -> PERMIDS integers .)
+    IDS             reduce using rule 34 (permids -> PERMIDS integers .)
+    PERMIDS         reduce using rule 34 (permids -> PERMIDS integers .)
+    AUXIDS          reduce using rule 34 (permids -> PERMIDS integers .)
+    NROOTS          reduce using rule 34 (permids -> PERMIDS integers .)
+    ROOTIDS         reduce using rule 34 (permids -> PERMIDS integers .)
+    ADD             reduce using rule 34 (permids -> PERMIDS integers .)
+    ROOTNAMES       reduce using rule 34 (permids -> PERMIDS integers .)
+    $end            reduce using rule 34 (permids -> PERMIDS integers .)
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 62
+
+state 55
+
+    (35) auxids -> AUXIDS integers .
+    (36) integers -> integers . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 35 (auxids -> AUXIDS integers .)
+    FILEMODE        reduce using rule 35 (auxids -> AUXIDS integers .)
+    VARINFO         reduce using rule 35 (auxids -> AUXIDS integers .)
+    DD              reduce using rule 35 (auxids -> AUXIDS integers .)
+    NNODES          reduce using rule 35 (auxids -> AUXIDS integers .)
+    NVARS           reduce using rule 35 (auxids -> AUXIDS integers .)
+    NSUPPVARS       reduce using rule 35 (auxids -> AUXIDS integers .)
+    SUPPVARNAMES    reduce using rule 35 (auxids -> AUXIDS integers .)
+    ORDEREDVARNAMES reduce using rule 35 (auxids -> AUXIDS integers .)
+    IDS             reduce using rule 35 (auxids -> AUXIDS integers .)
+    PERMIDS         reduce using rule 35 (auxids -> AUXIDS integers .)
+    AUXIDS          reduce using rule 35 (auxids -> AUXIDS integers .)
+    NROOTS          reduce using rule 35 (auxids -> AUXIDS integers .)
+    ROOTIDS         reduce using rule 35 (auxids -> AUXIDS integers .)
+    ADD             reduce using rule 35 (auxids -> AUXIDS integers .)
+    ROOTNAMES       reduce using rule 35 (auxids -> AUXIDS integers .)
+    $end            reduce using rule 35 (auxids -> AUXIDS integers .)
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 62
+
+state 56
+
+    (38) nroots -> NROOTS number .
+
+    VERSION         reduce using rule 38 (nroots -> NROOTS number .)
+    FILEMODE        reduce using rule 38 (nroots -> NROOTS number .)
+    VARINFO         reduce using rule 38 (nroots -> NROOTS number .)
+    DD              reduce using rule 38 (nroots -> NROOTS number .)
+    NNODES          reduce using rule 38 (nroots -> NROOTS number .)
+    NVARS           reduce using rule 38 (nroots -> NROOTS number .)
+    NSUPPVARS       reduce using rule 38 (nroots -> NROOTS number .)
+    SUPPVARNAMES    reduce using rule 38 (nroots -> NROOTS number .)
+    ORDEREDVARNAMES reduce using rule 38 (nroots -> NROOTS number .)
+    IDS             reduce using rule 38 (nroots -> NROOTS number .)
+    PERMIDS         reduce using rule 38 (nroots -> NROOTS number .)
+    AUXIDS          reduce using rule 38 (nroots -> NROOTS number .)
+    NROOTS          reduce using rule 38 (nroots -> NROOTS number .)
+    ROOTIDS         reduce using rule 38 (nroots -> NROOTS number .)
+    ADD             reduce using rule 38 (nroots -> NROOTS number .)
+    ROOTNAMES       reduce using rule 38 (nroots -> NROOTS number .)
+    $end            reduce using rule 38 (nroots -> NROOTS number .)
+
+
+state 57
+
+    (39) rootids -> ROOTIDS integers .
+    (36) integers -> integers . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 39 (rootids -> ROOTIDS integers .)
+    FILEMODE        reduce using rule 39 (rootids -> ROOTIDS integers .)
+    VARINFO         reduce using rule 39 (rootids -> ROOTIDS integers .)
+    DD              reduce using rule 39 (rootids -> ROOTIDS integers .)
+    NNODES          reduce using rule 39 (rootids -> ROOTIDS integers .)
+    NVARS           reduce using rule 39 (rootids -> ROOTIDS integers .)
+    NSUPPVARS       reduce using rule 39 (rootids -> ROOTIDS integers .)
+    SUPPVARNAMES    reduce using rule 39 (rootids -> ROOTIDS integers .)
+    ORDEREDVARNAMES reduce using rule 39 (rootids -> ROOTIDS integers .)
+    IDS             reduce using rule 39 (rootids -> ROOTIDS integers .)
+    PERMIDS         reduce using rule 39 (rootids -> ROOTIDS integers .)
+    AUXIDS          reduce using rule 39 (rootids -> ROOTIDS integers .)
+    NROOTS          reduce using rule 39 (rootids -> ROOTIDS integers .)
+    ROOTIDS         reduce using rule 39 (rootids -> ROOTIDS integers .)
+    ADD             reduce using rule 39 (rootids -> ROOTIDS integers .)
+    ROOTNAMES       reduce using rule 39 (rootids -> ROOTIDS integers .)
+    $end            reduce using rule 39 (rootids -> ROOTIDS integers .)
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 62
+
+state 58
+
+    (40) rootnames -> ROOTNAMES varnames .
+    (29) varnames -> varnames . varname
+    (31) varname -> . name
+    (32) varname -> . number
+    (44) name -> . NAME
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    VERSION         reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    FILEMODE        reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    VARINFO         reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    DD              reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    NNODES          reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    NVARS           reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    NSUPPVARS       reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    SUPPVARNAMES    reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    ORDEREDVARNAMES reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    IDS             reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    PERMIDS         reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    AUXIDS          reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    NROOTS          reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    ROOTIDS         reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    ADD             reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    ROOTNAMES       reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    $end            reduce using rule 40 (rootnames -> ROOTNAMES varnames .)
+    NAME            shift and go to state 38
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    varname                        shift and go to state 61
+    name                           shift and go to state 49
+    number                         shift and go to state 50
+
+state 59
+
+    (20) version -> VERSION name MINUS . number DOT number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 63
+
+state 60
+
+    (43) number -> MINUS NUMBER .
+
+    VERSION         reduce using rule 43 (number -> MINUS NUMBER .)
+    FILEMODE        reduce using rule 43 (number -> MINUS NUMBER .)
+    VARINFO         reduce using rule 43 (number -> MINUS NUMBER .)
+    DD              reduce using rule 43 (number -> MINUS NUMBER .)
+    NNODES          reduce using rule 43 (number -> MINUS NUMBER .)
+    NVARS           reduce using rule 43 (number -> MINUS NUMBER .)
+    NSUPPVARS       reduce using rule 43 (number -> MINUS NUMBER .)
+    SUPPVARNAMES    reduce using rule 43 (number -> MINUS NUMBER .)
+    ORDEREDVARNAMES reduce using rule 43 (number -> MINUS NUMBER .)
+    IDS             reduce using rule 43 (number -> MINUS NUMBER .)
+    PERMIDS         reduce using rule 43 (number -> MINUS NUMBER .)
+    AUXIDS          reduce using rule 43 (number -> MINUS NUMBER .)
+    NROOTS          reduce using rule 43 (number -> MINUS NUMBER .)
+    ROOTIDS         reduce using rule 43 (number -> MINUS NUMBER .)
+    ADD             reduce using rule 43 (number -> MINUS NUMBER .)
+    ROOTNAMES       reduce using rule 43 (number -> MINUS NUMBER .)
+    $end            reduce using rule 43 (number -> MINUS NUMBER .)
+    NAME            reduce using rule 43 (number -> MINUS NUMBER .)
+    NUMBER          reduce using rule 43 (number -> MINUS NUMBER .)
+    MINUS           reduce using rule 43 (number -> MINUS NUMBER .)
+    DOT             reduce using rule 43 (number -> MINUS NUMBER .)
+
+
+state 61
+
+    (29) varnames -> varnames varname .
+
+    NAME            reduce using rule 29 (varnames -> varnames varname .)
+    NUMBER          reduce using rule 29 (varnames -> varnames varname .)
+    MINUS           reduce using rule 29 (varnames -> varnames varname .)
+    VERSION         reduce using rule 29 (varnames -> varnames varname .)
+    FILEMODE        reduce using rule 29 (varnames -> varnames varname .)
+    VARINFO         reduce using rule 29 (varnames -> varnames varname .)
+    DD              reduce using rule 29 (varnames -> varnames varname .)
+    NNODES          reduce using rule 29 (varnames -> varnames varname .)
+    NVARS           reduce using rule 29 (varnames -> varnames varname .)
+    NSUPPVARS       reduce using rule 29 (varnames -> varnames varname .)
+    SUPPVARNAMES    reduce using rule 29 (varnames -> varnames varname .)
+    ORDEREDVARNAMES reduce using rule 29 (varnames -> varnames varname .)
+    IDS             reduce using rule 29 (varnames -> varnames varname .)
+    PERMIDS         reduce using rule 29 (varnames -> varnames varname .)
+    AUXIDS          reduce using rule 29 (varnames -> varnames varname .)
+    NROOTS          reduce using rule 29 (varnames -> varnames varname .)
+    ROOTIDS         reduce using rule 29 (varnames -> varnames varname .)
+    ADD             reduce using rule 29 (varnames -> varnames varname .)
+    ROOTNAMES       reduce using rule 29 (varnames -> varnames varname .)
+    $end            reduce using rule 29 (varnames -> varnames varname .)
+
+
+state 62
+
+    (36) integers -> integers number .
+
+    NUMBER          reduce using rule 36 (integers -> integers number .)
+    MINUS           reduce using rule 36 (integers -> integers number .)
+    VERSION         reduce using rule 36 (integers -> integers number .)
+    FILEMODE        reduce using rule 36 (integers -> integers number .)
+    VARINFO         reduce using rule 36 (integers -> integers number .)
+    DD              reduce using rule 36 (integers -> integers number .)
+    NNODES          reduce using rule 36 (integers -> integers number .)
+    NVARS           reduce using rule 36 (integers -> integers number .)
+    NSUPPVARS       reduce using rule 36 (integers -> integers number .)
+    SUPPVARNAMES    reduce using rule 36 (integers -> integers number .)
+    ORDEREDVARNAMES reduce using rule 36 (integers -> integers number .)
+    IDS             reduce using rule 36 (integers -> integers number .)
+    PERMIDS         reduce using rule 36 (integers -> integers number .)
+    AUXIDS          reduce using rule 36 (integers -> integers number .)
+    NROOTS          reduce using rule 36 (integers -> integers number .)
+    ROOTIDS         reduce using rule 36 (integers -> integers number .)
+    ADD             reduce using rule 36 (integers -> integers number .)
+    ROOTNAMES       reduce using rule 36 (integers -> integers number .)
+    $end            reduce using rule 36 (integers -> integers number .)
+
+
+state 63
+
+    (20) version -> VERSION name MINUS number . DOT number
+
+    DOT             shift and go to state 64
+
+
+state 64
+
+    (20) version -> VERSION name MINUS number DOT . number
+    (42) number -> . NUMBER
+    (43) number -> . MINUS NUMBER
+
+    NUMBER          shift and go to state 41
+    MINUS           shift and go to state 42
+
+    number                         shift and go to state 65
+
+state 65
+
+    (20) version -> VERSION name MINUS number DOT number .
+
+    VERSION         reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    FILEMODE        reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    VARINFO         reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    DD              reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    NNODES          reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    NVARS           reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    NSUPPVARS       reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    SUPPVARNAMES    reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    ORDEREDVARNAMES reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    IDS             reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    PERMIDS         reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    AUXIDS          reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    NROOTS          reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    ROOTIDS         reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    ADD             reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    ROOTNAMES       reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+    $end            reduce using rule 20 (version -> VERSION name MINUS number DOT number .)
+

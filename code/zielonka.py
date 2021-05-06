@@ -8,8 +8,11 @@ def zielonka(g):
         return expr2bdd(expr(False)), expr2bdd(expr(False))
     p_max, p_max_expr = g.get_max_prio()
     i = p_max % 2
+    print("Start zielonka")
     x = attractor(g, i, p_max_expr)
+    print("Zielonka check")
     g_bar = g.induced_game(~x)
+
     (win_0, win_1) = zielonka(g_bar)
     if i == 0:
         win_i = win_0
@@ -36,8 +39,7 @@ def ziel_with_psolver(g, psolver):
     if g.phi_0.is_zero() & g.phi_1.is_zero():
         return expr2bdd(expr(False)), expr2bdd(expr(False))
     (z_0, z_1) = psolver(g)
-    print(z_0.is_zero())
-    print(z_1.is_zero())
+
     g_bar = g.induced_game(~(z_0 | z_1))
     if (g_bar.phi_0 | g_bar.phi_1).is_zero():
         return z_0, z_1
