@@ -28,14 +28,11 @@ def test_par_algorithms():
         tot_time = [0 for i in range(len(all_solvers)+1)]
         for curr_game_index in range(n_games):
             curr_game = random_game(curr_config[0], curr_config[1], curr_config[2], curr_config[3])
-            print("Jeu généré")
             chrono = timer.Timer(verbose=False)
             g_copy = curr_game.induced_game(curr_game.phi_0 | curr_game.phi_1)
-            print("Jeu copié")
             with chrono:
                 (win_0, win_1) = zielonka.zielonka(g_copy)
             tot_time[0] = chrono.interval
-            print(chrono.interval)
             win_r_ref = (win_0, win_1)
 
             for curr_solver in range(len(all_solvers)):
