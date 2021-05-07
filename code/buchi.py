@@ -13,17 +13,10 @@ def buchi_inter_safety(g, i, f, s):
 
 
 def buchi_inter_cobuchi(g, i, f, s):
-    current_game = g
-    res = expr2bdd(expr(False))
-    while True:
-        win_i = buchi_inter_safety(current_game, i, f, s)
-        if win_i.is_zero():
-            break
-        res = res | win_i
-        attr_i_win_i = attractors.attractor(g, i, win_i)
-        res = res | attr_i_win_i
-        current_game = g.induced_game(~attr_i_win_i)
-    return res
+
+    win_i = buchi_inter_safety(g, i, f, s)
+    attr_i_win_i = attractors.attractor(g, i, win_i)
+    return attr_i_win_i
 
 
 def buchi_gen(g, i, f):

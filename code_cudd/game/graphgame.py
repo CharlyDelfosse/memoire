@@ -53,6 +53,13 @@ class GraphGame:
 
         return new_game
 
+    # Return the expression which is evaluate to True for vertices with priority less or equal than max_color
+    def inf_prio_expr(self, bdd, max_prio):
+        expr_res = bdd.false
+        for curr_prio in range(0, max_prio + 1):
+            expr_res = expr_res | self.gamma[curr_prio]
+        return expr_res
+
     # Return the expression which is evaluate to True for vertices with prio greater or equal than min_color
     def sup_prio_expr(self, bdd, min_prio):
         expr_res = bdd.false

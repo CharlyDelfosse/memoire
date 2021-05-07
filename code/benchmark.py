@@ -32,7 +32,7 @@ def test_par_algorithms():
             g_copy = curr_game.induced_game(curr_game.phi_0 | curr_game.phi_1)
             with chrono:
                 (win_0, win_1) = zielonka.zielonka(g_copy)
-            tot_time[0] = chrono.interval
+            tot_time[0] += chrono.interval
             win_r_ref = (win_0, win_1)
 
             for curr_solver in range(len(all_solvers)):

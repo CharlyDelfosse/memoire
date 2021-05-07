@@ -34,7 +34,8 @@ def good_ep_solver_r(g):
             ind_game = g.induced_game(~x)
             ind_game.m_vars = g.m_vars
             ind_game.m_vars_bis = g.m_vars_bis
-            (win_0, win_1) = good_ep_solver(ind_game)
+            ind_game.mapping_bis = g.mapping_bis
+            (win_0, win_1) = good_ep_solver_r(ind_game)
 
             if i == 0:
                 return win_0 | x, win_1
