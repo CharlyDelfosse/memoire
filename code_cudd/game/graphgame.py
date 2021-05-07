@@ -1,5 +1,6 @@
 import math
 
+
 class GraphGame:
 
     def __init__(self, bdd, n, d):
@@ -51,3 +52,30 @@ class GraphGame:
         new_game.set_expr(phi_0_bar, phi_1_bar, tau_bar, gamma_bar)
 
         return new_game
+
+    # Return the expression which is evaluate to True for vertices with prio greater or equal than min_color
+    def sup_prio_expr(self, bdd, min_prio):
+        expr_res = bdd.false
+        for curr_prio in range(min_prio, self.d + 1):
+            expr_res = expr_res | self.gamma[curr_prio]
+        return expr_res
+
+    def sup_prio_expr_odd(self, bdd, min_prio):
+        expr_res = bdd.false
+        if min_prio % 2 == 0:
+            init_prio = min_prio + 1
+        else:
+            init_prio = min_prio
+        for curr_prio in range(init_prio, self.d + 1, 2):
+            expr_res = expr_res | self.gamma[curr_prio]
+        return expr_res
+
+    def sup_prio_expr_even(self, bdd, min_prio):
+        expr_res = bdd.false
+        if min_prio % 2 == 0:
+            init_prio = min_prio
+        else:
+            init_prio = min_prio + 1
+        for curr_prio in range(init_prio, self.d + 1, 2):
+            expr_res = expr_res | self.gamma[curr_prio]
+        return expr_res
