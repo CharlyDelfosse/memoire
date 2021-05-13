@@ -42,7 +42,7 @@ def attractor_pos(bdd, g, i, f):
         f_1 = (g.tau & bdd.let(g.mapping_bis, attr_old))
         f_1 = (bdd.exist(g.bis_vars, f_1))
 
-        f_2 = g.tau & bdd.let(g.mapping_bis, ~attr_old)
+        f_2 = g.tau & bdd.let(g.mapping_bis, ~(attr_old | f))
         f_2 = ~(bdd.exist(g.bis_vars, f_2))
 
         if i == 0:

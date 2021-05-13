@@ -12,13 +12,7 @@ class GraphGame:
         self.d = d
         self.n = n
 
-        self.mapping_bis = {}
-        for i in range(self.n_vars):
-            self.mapping_bis[self.g_vars[i]] = self.g_vars[i + self.n_vars]
-
-        self.mapping_inv = {}
-        for i in range(self.n_vars):
-            self.mapping_inv[self.g_vars[i + self.n_vars]] = self.g_vars[i]
+        self.mapping_bis = dict(zip(self.q_vars, self.bis_vars))
 
         self.phi_0 = bdd.false
         self.phi_1 = bdd.false
