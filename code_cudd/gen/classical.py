@@ -58,10 +58,14 @@ def disj_par_win(bdd, g, max_values):
 
 
 def classical_with_psolver(bdd, g, psolver):
+    psolver_solved = False
     (z0, z1) = psolver(bdd, g)
-    print(z0 == bdd.false)
-    print(z1 == bdd.false)
+
     g_bar = g.induced_game(bdd, ~(z0 | z1))
+
+    if (g_bar.phi_0 | g_bar.phi_1) == bdd.false:
+        psolver_solved = True
+        return z0, z1, psolver_solved
 
     complement_prios(bdd, g_bar)
 
@@ -73,4 +77,4 @@ def classical_with_psolver(bdd, g, psolver):
             g_bar.d[curr_f] = curr_max
     max_values = copy.copy(g_bar.d)
     (w0, w1) = disj_par_win(bdd, g_bar, max_values)
-    return w0 | z0, w1 | z1
+    return w0 | z0, w1 | z1, psolver_solved

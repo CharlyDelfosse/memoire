@@ -1,7 +1,7 @@
 import math
 from attractors import attractors
 from utils import num_to_map
-
+import dd.cudd as _bdd
 
 def good_ep_solver(bdd, g):
     init_ext_game_infos(bdd, g)
@@ -93,8 +93,10 @@ def good_ep(bdd, g, i, tau_e):
             curr_p_bdd = bdd.cube(curr_p_point)
             id_prio_m = id_prio_m | (g.gamma[curr_p] & curr_p_bdd)
 
-        f = f & id_prio_m
-        f = bdd.exist(g.m_vars, f)
+        # Non-optimized code
+        # f = f & id_prio_m
+        # f = bdd.exist(g.m_vars, f)
+        f = _bdd.and_exists(f, id_prio_m, g.m_vars)
 
         if f == f_old:
             break
@@ -104,11 +106,15 @@ def good_ep(bdd, g, i, tau_e):
 
 
 def attractor_pos_ext(bdd, g, i, f, tau_e):
-    f_1 = (tau_e & bdd.let(g.mapping_bis, f))
-    f_1 = bdd.exist(g.bis_vars + g.m_vars_bis, f_1)
+    # Non-optimized code
+    # f_1 = (tau_e & bdd.let(g.mapping_bis, f))
+    # f_1 = bdd.exist(g.bis_vars + g.m_vars_bis, f_1)
+    f_1 = _bdd.and_exists(tau_e, bdd.let(g.mapping_bis, f), g.bis_vars + g.m_vars_bis)
 
-    f_2 = tau_e & bdd.let(g.mapping_bis, ~f)
-    f_2 = ~(bdd.exist(g.bis_vars + g.m_vars_bis, f_2))
+    # Non-optimized code
+    # f_2 = tau_e & bdd.let(g.mapping_bis, ~f)
+    # f_2 = ~(bdd.exist(g.bis_vars + g.m_vars_bis, f_2))
+    f_2 = ~ _bdd.and_exists(tau_e, bdd.let(g.mapping_bis, ~f), g.bis_vars + g.m_vars_bis)
 
     if i == 0:
         f_1 = g.phi_0 & f_1
@@ -119,11 +125,15 @@ def attractor_pos_ext(bdd, g, i, f, tau_e):
 
     attr_old = f_1 | f_2
     while True:
-        f_1 = tau_e & bdd.let(g.mapping_bis, attr_old)
-        f_1 = bdd.exist(g.bis_vars + g.m_vars_bis, f_1)
+        # Non-optimized code
+        # f_1 = tau_e & bdd.let(g.mapping_bis, attr_old)
+        # f_1 = bdd.exist(g.bis_vars + g.m_vars_bis, f_1)
+        f_1 = _bdd.and_exists(tau_e, bdd.let(g.mapping_bis, attr_old), g.bis_vars + g.m_vars_bis)
 
-        f_2 = tau_e & bdd.let(g.mapping_bis, ~attr_old)
-        f_2 = ~(bdd.exist(g.bis_vars + g.m_vars_bis, f_2))
+        # Non-optimized code
+        # f_2 = tau_e & bdd.let(g.mapping_bis, ~(attr_old | f))
+        # f_2 = ~(bdd.exist(g.bis_vars + g.m_vars_bis, f_2))
+        f_2 = ~ _bdd.and_exists(tau_e, bdd.let(g.mapping_bis, ~(attr_old | f)), g.bis_vars + g.m_vars_bis)
 
         if i == 0:
             f_1 = g.phi_0 & f_1

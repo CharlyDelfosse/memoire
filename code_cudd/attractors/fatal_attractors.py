@@ -19,7 +19,7 @@ def monotone_attractor(bdd, g, i, f, d):
         f_1 = g.tau & bdd.let(g.mapping_bis, attr_old)
         f_1 = bdd.exist(g.bis_vars, f_1) & inf_col_expr
 
-        f_2 = g.tau & bdd.let(g.mapping_bis, ~ attr_old)
+        f_2 = g.tau & bdd.let(g.mapping_bis, ~ (attr_old | f))
         f_2 = ~ bdd.exist(g.bis_vars, f_2) & inf_col_expr
 
         if i == 0:

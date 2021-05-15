@@ -1,12 +1,20 @@
+import dd.cudd as _bdd
+
+
 def attractor(bdd, g, i, f):
     k = 0
     attr_old = f
     while True:
-        f_1 = g.tau & bdd.let(g.mapping_bis, attr_old)
-        f_1 = bdd.exist(g.bis_vars, f_1)
+        # Code non-optimized
+        # f_1 = g.tau & bdd.let(g.mapping_bis, attr_old)
+        # f_1 = bdd.exist(g.bis_vars, f_1)
+        f_1 = _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, attr_old), g.bis_vars)
 
-        f_2 = g.tau & bdd.let(g.mapping_bis, (~attr_old))
-        f_2 = ~(bdd.exist(g.bis_vars, f_2))
+        # Code non-optimized
+        # f_2 = g.tau & bdd.let(g.mapping_bis, (~attr_old))
+        # f_2 = ~(bdd.exist(g.bis_vars, f_2))
+
+        f_2 = ~ _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, ~attr_old), g.bis_vars)
 
         if i == 0:
             f_1 = g.phi_0 & f_1
@@ -25,11 +33,16 @@ def attractor(bdd, g, i, f):
 
 def attractor_pos(bdd, g, i, f):
     k = 1
-    f_1 = (g.tau & bdd.let(g.mapping_bis, f))
-    f_1 = bdd.exist(g.bis_vars, f_1)
 
-    f_2 = g.tau & bdd.let(g.mapping_bis, ~f)
-    f_2 = ~(bdd.exist(g.bis_vars, f_2))
+    # Code non-optimized
+    # f_1 = (g.tau & bdd.let(g.mapping_bis, f))
+    # f_1 = bdd.exist(g.bis_vars, f_1)
+    f_1 = _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, f), g.bis_vars)
+
+    # Code non-optimized
+    # f_2 = g.tau & bdd.let(g.mapping_bis, ~f)
+    # f_2 = ~(bdd.exist(g.bis_vars, f_2))
+    f_2 = ~ _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, ~f), g.bis_vars)
     if i == 0:
         f_1 = g.phi_0 & f_1
         f_2 = g.phi_1 & f_2
@@ -39,11 +52,15 @@ def attractor_pos(bdd, g, i, f):
 
     attr_old = f_1 | f_2
     while True:
-        f_1 = (g.tau & bdd.let(g.mapping_bis, attr_old))
-        f_1 = (bdd.exist(g.bis_vars, f_1))
+        # Code non-optimized
+        # f_1 = (g.tau & bdd.let(g.mapping_bis, attr_old))
+        # f_1 = (bdd.exist(g.bis_vars, f_1))
+        f_1 = _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, attr_old), g.bis_vars)
 
-        f_2 = g.tau & bdd.let(g.mapping_bis, ~(attr_old | f))
-        f_2 = ~(bdd.exist(g.bis_vars, f_2))
+        # Code non-optimized
+        # f_2 = g.tau & bdd.let(g.mapping_bis, ~(attr_old | f))
+        # f_2 = ~(bdd.exist(g.bis_vars, f_2))
+        f_2 = ~ _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, ~(attr_old | f)), g.bis_vars)
 
         if i == 0:
             f_1 = g.phi_0 & f_1
@@ -74,12 +91,15 @@ def recur(bdd, g, i, f):
 
 
 def p_safe_attractor(bdd, g, i, u, avoid):
-    f_1 = (g.tau & bdd.let(g.mapping_bis, u)) & ~avoid
-    f_1 = bdd.exist(g.bis_vars, f_1)
+    # Code non-optimized
+    # f_1 = (g.tau & bdd.let(g.mapping_bis, u)) & ~avoid
+    # f_1 = bdd.exist(g.bis_vars, f_1)
+    f_1 = _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, u) & ~ avoid, g.bis_vars)
 
-    f_2 = g.tau & bdd.let(g.mapping_bis, ~u)
-    f_2 = ~ bdd.exist(g.bis_vars, f_2) & ~ avoid
-
+    # Code non-optimized
+    # f_2 = g.tau & bdd.let(g.mapping_bis, ~u)
+    # f_2 = ~ bdd.exist(g.bis_vars, f_2) & ~ avoid
+    f_2 = ~ _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, ~u), g.bis_vars) & ~avoid
     if i == 0:
         f_1 = g.phi_0 & f_1
         f_2 = g.phi_1 & f_2
@@ -89,11 +109,16 @@ def p_safe_attractor(bdd, g, i, u, avoid):
 
     attr_old = f_1 | f_2
     while True:
-        f_1 = g.tau & bdd.let(g.mapping_bis, attr_old) & ~avoid
-        f_1 = bdd.exist(g.bis_vars, f_1)
+        # Code non-optimized
+        # f_1 = g.tau & bdd.let(g.mapping_bis, attr_old) & ~avoid
+        # f_1 = bdd.exist(g.bis_vars, f_1)
+        f_1 = _bdd.and_exists(g.tau, bdd.let(g.mapping_bis, attr_old) & ~avoid, g.bis_vars)
 
-        f_2 = g.tau & bdd.let(g.mapping_bis, ~attr_old)
-        f_2 = ~bdd.exist(g.bis_vars, f_2) & ~avoid
+        # Code non-optimized
+        # f_2 = g.tau & bdd.let(g.mapping_bis, ~(attr_old | u))
+        # f_2 = ~bdd.exist(g.bis_vars, f_2) & ~avoid
+        f_2 = ~_bdd.and_exists(g.tau, bdd.let(g.mapping_bis, ~(attr_old | u)), g.bis_vars) & ~avoid
+
         if i == 0:
             f_1 = g.phi_0 & f_1
             f_2 = g.phi_1 & f_2

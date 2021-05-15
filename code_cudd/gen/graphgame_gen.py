@@ -45,6 +45,15 @@ class GraphGame_gen:
 
         return new_game
 
+    # Return vertices with priorities greater or equal than min_prio on dimension f_index
+    def sup_prio_expr(self, bdd, min_prio, f_index):
+        expr_res = bdd.false
+        init_prio = min_prio
+        for curr_prio in range(init_prio, self.d[f_index] + 1):
+            expr_res = expr_res | self.gamma[f_index][curr_prio]
+        return expr_res
+
+
     # Return vertices with even priorities greater or equal than min_prio on dimension f_index
     def sup_prio_expr_even(self, bdd, min_prio, f_index):
         expr_res = bdd.false
@@ -52,6 +61,17 @@ class GraphGame_gen:
             init_prio = min_prio
         else:
             init_prio = min_prio + 1
+        for curr_prio in range(init_prio, self.d[f_index] + 1, 2):
+            expr_res = expr_res | self.gamma[f_index][curr_prio]
+        return expr_res
+
+    # Return vertices with odd priorities greater or equal than min_prio on dimension f_index
+    def sup_prio_expr_odd(self, bdd, min_prio, f_index):
+        expr_res = bdd.false
+        if min_prio % 2 == 0:
+            init_prio = min_prio + 1
+        else:
+            init_prio = min_prio
         for curr_prio in range(init_prio, self.d[f_index] + 1, 2):
             expr_res = expr_res | self.gamma[f_index][curr_prio]
         return expr_res
@@ -66,4 +86,18 @@ class GraphGame_gen:
                 init_prio = min_prios[prio_f_index]
             for curr_prio in range(init_prio, self.d[prio_f_index] + 1, 2):
                 expr_res = expr_res | self.gamma[prio_f_index][curr_prio]
+        return expr_res
+
+    # Return the expression which is evaluate to True for vertices with even prio greater or equal than min_prios in all dimensions
+    def sup_all_prio_even(self, bdd, min_prios):
+        expr_res = bdd.true
+        for prio_f_index in range(self.k):
+            curr_expr = bdd.false
+            if min_prios[prio_f_index] % 2 == 0:
+                init_prio = min_prios[prio_f_index]
+            else:
+                init_prio = min_prios[prio_f_index] + 1
+            for curr_prio in range(init_prio, self.d[prio_f_index] + 1, 2):
+                curr_expr = curr_expr | self.gamma[prio_f_index][curr_prio]
+            expr_res = expr_res & curr_expr
         return expr_res

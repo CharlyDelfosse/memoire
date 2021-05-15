@@ -14,7 +14,7 @@ def graphgame_viz(bdd, gg):
     color_map = []
 
     all_nodes = get_all_nodes(bdd, gg)
-
+    mapping_inv = dict(zip(gg.bis_vars, gg.q_vars))
     node_id = 0
     for curr_node in all_nodes:
         if bdd.let(curr_node, gg.phi_0) == bdd.true:
@@ -40,7 +40,7 @@ def graphgame_viz(bdd, gg):
         if bdd.let(node_attr["vars"], gg.phi_0) == bdd.true or bdd.let(node_attr["vars"], gg.phi_1) == bdd.true:
             exiting_edges = bdd.let(node_attr["vars"], gg.tau)
             for c_succ, succ_attr in graph_nodes:
-                if bdd.let(succ_attr["vars"], bdd.let(gg.mapping_inv, exiting_edges)) == bdd.true:
+                if bdd.let(succ_attr["vars"], bdd.let(mapping_inv, exiting_edges)) == bdd.true:
                     nx_graph.add_edge(c_node, c_succ)
 
     labels = nx.get_node_attributes(nx_graph, "node_info")
