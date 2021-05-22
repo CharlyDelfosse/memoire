@@ -12,9 +12,17 @@ def buchi_inter_safety(bdd, g, i, f, s):
 
 
 def buchi_inter_cobuchi(bdd, g, i, f, s):
-    win_i = buchi_inter_safety(bdd, g, i, f, s)
-    attr_i_win_i = attractors.attractor(bdd, g, i, win_i)
-    return attr_i_win_i
+
+    game_copy = g.induced_game(bdd, g.phi_0 | g.phi_1)
+    win = bdd.false
+    while True:
+        win_i = buchi_inter_safety(bdd, game_copy, i, f, s)
+        if win_i == bdd.false:
+            break
+        attr_i_win_i = attractors.attractor(bdd, game_copy, i, win_i)
+        win = win | attr_i_win_i
+        game_copy = game_copy.induced_game(bdd, ~attr_i_win_i)
+    return win
 
 
 # Return winning regions in a game with a generalized Buchi objective for player 0
